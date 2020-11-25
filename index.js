@@ -10,12 +10,22 @@ arr.forEach(function(item) {
 
 let n = 100;
 
-nextPrime:
-for (let i = 2; i <= n; i++) { 
-
-    for (let j = 2; j < i; j++) { 
-        if (i % j === 0) continue nextPrime; 
+function isPrimeNumber(num) {
+    for (let i = 2; i < num; i++) {
+        if (num % i === 0) {
+            return false;
+        }
     }
-
-    console.log(i + ' Делится на 1 и на ' + i); // простое число
+    return true;
 }
+
+function getPrimeNumbers(num) {
+    
+    for (let i = 2; i < num; i++) {
+        if (isPrimeNumber(i)) {
+            console.log(i + ' Делится на 1 и на ' + i);
+        }
+    }
+}
+
+getPrimeNumbers(n);
