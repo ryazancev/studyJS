@@ -1,46 +1,49 @@
 'use strict';
 
-
-let counter = 10;
-
 function isNumber(n) {
-        return !isNaN(parseFloat(n)) && isFinite(n);
-    }
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
-function guessNumber(count) {
-    let userNum = prompt('Угадай число от 1 до 100'),
-        currentNum = 10;
+function getRandom(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
+}
 
-        counter--;
+function guessNumber() {
+    const currentNumber = getRandom(1, 100);
+    const counterNumber = 10;
 
-    function compareNumber(userNumber) {
-        if (counter > 0) {
-            if (isNumber(userNum)) {
-                if (userNumber > currentNum) {
-                    alert('Загаданное число меньше. У вас осталось ' + counter + ' попыток', 'введите новый вариант');
-                    guessNumber();
-                } else if (userNumber < currentNum) {
-                    alert('Загаданное число больше. У вас осталось ' + counter + ' попыток', 'введите новый вариант');
-                    guessNumber();
-                } else if (userNumber == currentNum) {
+    function compareNumber(counter) {
+        let userNumber = prompt('Угадай число от 1 до 100');
+        counter--
+        if (counter > 0) {            
+            if (isNumber(userNumber)) {
+                if (userNumber > currentNumber) {
+                    alert('Загаданное число меньше. У вас осталось ' + counter + 
+                    ' попыток', 'введите новый вариант');
+                    compareNumber(counter);
+                } else if (userNumber < currentNumber) {
+                    alert('Загаданное число больше. У вас осталось ' + counter + 
+                    ' попыток', 'введите новый вариант');
+                    compareNumber(counter);
+                } else if (userNumber == currentNumber) {
                     alert('Поздравляю, Вы угадали!!!');
-                    guessNumber(counter = 10);
+                    return;
                 }
-            } else if (userNum === null) {
+            } else if (userNumber === null) {
                 return alert('Игра окончена!');
             } else {
                 alert('Введи число!');
-                guessNumber();
+                compareNumber(counter);
             }
         } else {
-            confirm('Попытки закончились, хотите сыграть еще?') ?
-                guessNumber(counter = 10) :
-                alert('Игра окончена!');
+            confirm('Попытки закончились, хотите сыграть еще?') ? 
+            guessNumber() : 
+            alert('Игра окончена!');
         }
     }
-    return compareNumber(userNum);
+    compareNumber(counterNumber);
 }
 
-guessNumber(counter);
-
-
+guessNumber();
