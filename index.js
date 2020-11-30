@@ -140,6 +140,3 @@ console.log(appData.getStatusIncome());
 console.log(appData.addExpenses.map(function(item) {
     return item[0].toUpperCase() + item.slice(1);
 }).join(', '));
-
-
-
