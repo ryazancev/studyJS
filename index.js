@@ -1,6 +1,27 @@
 'use strict';
 
 // Обьявляем переменные
+const calculateButton = document.getElementById('start'),
+        incomeAdd = document.getElementsByTagName('button')[0],
+        expensesAdd = document.getElementsByTagName('button')[1],
+        depositCheck = document.querySelector('#deposit-check'),
+        additionalIncomeItems = document.querySelectorAll('.additional_income-item'),
+        budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
+        budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
+        expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0],
+        additionalIncomeValue = document.getElementsByClassName('additional_income-value')[0],
+        additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
+        incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
+        targetMonthValue = document.getElementsByClassName('target_month-value')[0],
+        salaryAmount = document.querySelectorAll('.salary-amount'),
+        incomeTitle = document.querySelectorAll('.income-title'),
+        incomeAmount = document.querySelectorAll('.income-amount'),
+        expensesTitle = document.querySelectorAll('.expenses-title'),
+        expensesAmount = document.querySelectorAll('.expenses-amount'),
+        additionalExpensesItem = document.querySelectorAll('.additional_expenses-item'),
+        targetAmount = document.querySelectorAll('.target-amount'),
+        periodSelect = document.querySelectorAll('.period-select');
+
 let money,
     start = getStart(),
     appData = {
@@ -102,7 +123,6 @@ let money,
         }
     };
 
-
 // Функционал
 
 function isNumber(n) {
@@ -118,20 +138,15 @@ function getStart() {
     money = +money;
 }
 
-
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
 appData.getInfoDeposit();
 
-
-
-
 for (let key in appData) {
     console.log('Наша программа включает в себя данные: ');
     console.log(key + ' ' + ' ' + appData[key]);
 }
-
 
 // Выводы в консоль
 console.log('Расходы за месяц: ' + appData.budgetMonth);
