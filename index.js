@@ -1,14 +1,14 @@
 'use strict';
 // Заменить картинку заднего фона на другую из папки image
 // Обьявляем переменные
-const books = document.querySelector('.books')
-const bookCollections = document.querySelectorAll('.book');
-const adv = document.querySelector('.adv');
-const headLink = bookCollections[4].querySelector('a');
-const bookTwoElems = bookCollections[0].querySelectorAll('li');
-const bookFiveElems = bookCollections[5].querySelectorAll('li');
-const bookSixElems = bookCollections[2].querySelectorAll('li');
-const newHead = document.createElement('li');
+const books = document.querySelector('.books'),
+    bookCollections = document.querySelectorAll('.book'),
+    adv = document.querySelector('.adv'),
+    headLink = bookCollections[4].querySelector('a'),
+    bookTwoElems = bookCollections[0].querySelectorAll('li'),
+    bookFiveElems = bookCollections[5].querySelectorAll('li'),
+    bookSixElems = bookCollections[2].querySelectorAll('li'),
+    newHead = document.createElement('li');
 
 // Функционал
 books.prepend(bookCollections[1]);
