@@ -38,14 +38,15 @@ let appData = {
         persentDeposit: 0,
         moneyDeposit: 0,
         start: function() {
-            
-                appData.getExpenses();
-                appData.getExpensesMonth();
-                appData.getAddExpenses();
-                appData.getAddIncome();
-                appData.getIncomeMonth();
-                appData.getBudget();
-                appData.showResult();
+            appData.budget = +salaryAmount.value;
+
+            appData.getExpenses();
+            appData.getExpensesMonth();
+            appData.getAddExpenses();
+            appData.getAddIncome();
+            appData.getIncomeMonth();
+            appData.getBudget();
+            appData.showResult();
             
         },
         showResult: function() {
@@ -95,7 +96,7 @@ let appData = {
         },
         addIncomeBlock: function() {
             const cloneIncomeItem = incomeItems[0].cloneNode(true);
-            
+        
             incomeAdd.before(cloneIncomeItem);
             incomeItems = document.querySelectorAll('.income-items');        
 
@@ -190,11 +191,12 @@ salaryAmount.addEventListener('input', function() {
     }
 
     calculateButton.addEventListener('click', appData.start);
-    expensesAdd.addEventListener('click', appData.addExpensesBlock);
-    incomeAdd.addEventListener('click', appData.addIncomeBlock);
-    periodSelect.addEventListener('input', function() {
-        periodAmount.textContent = periodSelect.value;
-    });
-})
+});
+
+expensesAdd.addEventListener('click', appData.addExpensesBlock);
+incomeAdd.addEventListener('click', appData.addIncomeBlock);
+periodSelect.addEventListener('input', function() {
+    periodAmount.textContent = periodSelect.value;
+});
 
 // Выводы в консоль
