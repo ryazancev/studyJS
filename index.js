@@ -188,52 +188,52 @@ function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-// function checkInputText() {
-//     const regExp = /^[а-яА-ЯёЁ]+$/,
-//         placeholders = document.querySelectorAll('[placeholder="Наименование"]');
+function checkInputText() {
+    const regExp = /^[а-яА-ЯёЁ]+$/,
+        placeholders = document.querySelectorAll('[placeholder="Наименование"]');
     
-//     placeholders.forEach(function(item) {
-//         item.addEventListener('input', function() {
-//             if (!regExp.test(item.value) && item.value.trim() !== '') {
-//                 item.value = '';
-//                 alert('Используйте русский алфавит!');
-//                 return
-//             };  
-//         });
-//     });
-// }
+    placeholders.forEach(function(item) {
+        item.addEventListener('input', function() {
+            if (!regExp.test(item.value) && item.value.trim() !== '') {
+                item.value = '';
+                alert('Используйте русский алфавит!');
+                return
+            };  
+        });
+    });
+}
 
 
-// function checkInputNumber() {
-//     const regExp = /^[0-9]+$/,
-//         placeholders = document.querySelectorAll('[placeholder="Сумма"]');
+function checkInputNumber() {
+    const regExp = /^[0-9]+$/,
+        placeholders = document.querySelectorAll('[placeholder="Сумма"]');
     
-//     placeholders.forEach(function(item) {
-//         item.addEventListener('input', function() {
-//             if (!regExp.test(item.value) && item.value.trim() !== '') {
-//                 item.value = '';
-//                 alert('Введите цифры');
-//                 return
-//             };  
-//         });
-//     });
-// }
+    placeholders.forEach(function(item) {
+        item.addEventListener('input', function() {
+            if (!regExp.test(item.value) && item.value.trim() !== '') {
+                item.value = '';
+                alert('Введите цифры');
+                return
+            };  
+        });
+    });
+}
 
+document.addEventListener('DOMContentLoaded', function() {
+    calculateButton.disabled = true;
+    checkInputNumber();
+    checkInputText();
+    salaryAmount.addEventListener('input', function() {
+        if (salaryAmount.value !== '') calculateButton.disabled = false;
+    })
+})
 
-salaryAmount.addEventListener('change', function() {
-    if (salaryAmount.value === '') {
-        calculateButton.disabled = true;
-    } else {
-        calculateButton.disabled = false;
-    }
-
-    calculateButton.addEventListener('click', appData.start);
-});
-
+calculateButton.addEventListener('click', appData.start);
 expensesAdd.addEventListener('click', appData.addExpensesBlock);
 incomeAdd.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', function() {
     periodAmount.textContent = periodSelect.value;
 });
+
 
 // Выводы в консоль
