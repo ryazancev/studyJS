@@ -182,16 +182,15 @@ function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-salaryAmount.addEventListener('input', function() {
-    if (salaryAmount.value === '') {
-        calculateButton.disabled = true;
-    } else {
-        calculateButton.disabled = false;
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    calculateButton.disabled = true;
 
-    calculateButton.addEventListener('click', appData.start);
+    salaryAmount.addEventListener('input', function() {
+        if (salaryAmount.value !== '') calculateButton.disabled = false;
+    })
 });
 
+calculateButton.addEventListener('click', appData.start);
 expensesAdd.addEventListener('click', appData.addExpensesBlock);
 incomeAdd.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', function() {
