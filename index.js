@@ -59,8 +59,7 @@ let appData = {
             incomePeriodValue.value = appData.calcSavedMoney();
 
             periodSelect.addEventListener('input', function() {
-                appData.calcSavedMoney()
-                appData.showResult();
+                incomePeriodValue.value = appData.calcSavedMoney();
             });
             
         },
