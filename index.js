@@ -46,6 +46,7 @@ let appData = {
             appData.getExpensesMonth();
             appData.getAddExpenses();
             appData.getAddIncome();
+            appData.getIncome();
             appData.getIncomeMonth();
             appData.getBudget();
             appData.showResult();
@@ -83,7 +84,7 @@ let appData = {
                     cashExpenses = item.querySelector('.expenses-amount').value;
 
                     if (itemExpenses !== '' && cashExpenses !== '') {
-                        appData.expenses[itemExpenses] = cashExpenses;
+                        appData.expenses[itemExpenses] = +cashExpenses;
                     }
             });
         },
