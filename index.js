@@ -42,7 +42,6 @@ let appData = {
         start: function() {
             appData.budget = +salaryAmount.value;
 
-            appData.checkInputText();
             appData.getExpenses();
             appData.getExpensesMonth();
             appData.getAddExpenses();
@@ -189,39 +188,39 @@ function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-function checkInputText() {
-    const regExp = /^[а-яА-ЯёЁ]+$/,
-        placeholders = document.querySelectorAll('[placeholder="Наименование"]');
+// function checkInputText() {
+//     const regExp = /^[а-яА-ЯёЁ]+$/,
+//         placeholders = document.querySelectorAll('[placeholder="Наименование"]');
     
-    placeholders.forEach(function(item) {
-        item.addEventListener('input', function() {
-            if (!regExp.test(item.value) && item.value !== '') {
-                item.value = '';
-                alert('Используйте русский алфавит!');
-                return
-            };  
-        });
-    });
-}
-checkInputText();
+//     placeholders.forEach(function(item) {
+//         item.addEventListener('input', function() {
+//             if (!regExp.test(item.value) && item.value.trim() !== '') {
+//                 item.value = '';
+//                 alert('Используйте русский алфавит!');
+//                 return
+//             };  
+//         });
+//     });
+// }
 
-function checkInputNumber() {
-    const regExp = /^[0-9]+$/,
-        placeholders = document.querySelectorAll('[placeholder="Сумма"]');
+
+// function checkInputNumber() {
+//     const regExp = /^[0-9]+$/,
+//         placeholders = document.querySelectorAll('[placeholder="Сумма"]');
     
-    placeholders.forEach(function(item) {
-        item.addEventListener('input', function() {
-            if (!regExp.test(item.value) && item.value !== '') {
-                item.value = '';
-                alert('Введите цифры');
-                return
-            };  
-        });
-    });
-}
-checkInputNumber();
+//     placeholders.forEach(function(item) {
+//         item.addEventListener('input', function() {
+//             if (!regExp.test(item.value) && item.value.trim() !== '') {
+//                 item.value = '';
+//                 alert('Введите цифры');
+//                 return
+//             };  
+//         });
+//     });
+// }
 
-salaryAmount.addEventListener('input', function() {
+
+salaryAmount.addEventListener('change', function() {
     if (salaryAmount.value === '') {
         calculateButton.disabled = true;
     } else {
