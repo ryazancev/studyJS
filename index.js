@@ -198,7 +198,7 @@ function checkInputText() {
             if (!regExp.test(item.value) && item.value !== '') {
                 item.value = '';
                 alert('Используйте русский алфавит!');
-                return;
+                return
             };  
         });
     });
@@ -214,7 +214,7 @@ function checkInputNumber() {
             if (!regExp.test(item.value) && item.value !== '') {
                 item.value = '';
                 alert('Введите цифры');
-                return;
+                return
             };  
         });
     });
