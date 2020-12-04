@@ -20,6 +20,8 @@ const calculateButton = document.getElementById('start'),
         targetAmount = document.querySelector('.target-amount'),
         periodSelect = document.querySelector('.period-select'),
         periodAmount = document.querySelector('.period-amount');
+        
+        
 
 let expensesItems = document.querySelectorAll('.expenses-items'),
     incomeItems = document.querySelectorAll('.income-items');        
@@ -40,6 +42,7 @@ let appData = {
         start: function() {
             appData.budget = +salaryAmount.value;
 
+            appData.checkInputText();
             appData.getExpenses();
             appData.getExpensesMonth();
             appData.getAddExpenses();
@@ -59,14 +62,15 @@ let appData = {
             incomePeriodValue.value = appData.calcSavedMoney();
 
             periodSelect.addEventListener('input', function() {
-                appData.calcSavedMoney()
-                appData.showResult();
+                incomePeriodValue.value = appData.calcSavedMoney();
             });
             
         },
         addExpensesBlock: function() {
             const cloneExpensesItem = expensesItems[0].cloneNode(true);
             
+            cloneExpensesItem.querySelector('.expenses-title').value = '';    
+            cloneExpensesItem.querySelector('.expenses-amount').value = '';
             expensesAdd.before(cloneExpensesItem);
             expensesItems = document.querySelectorAll('.expenses-items');
 
@@ -96,7 +100,9 @@ let appData = {
         },
         addIncomeBlock: function() {
             const cloneIncomeItem = incomeItems[0].cloneNode(true);
-        
+            
+            cloneIncomeItem.querySelector('.income-title').value = '';    
+            cloneIncomeItem.querySelector('.income-amount').value = '';
             incomeAdd.before(cloneIncomeItem);
             incomeItems = document.querySelectorAll('.income-items');        
 
@@ -174,7 +180,7 @@ let appData = {
         },
         calcSavedMoney: function() {
             return appData.budgetMonth * periodSelect.value;
-        }   
+        },
     };
 
 // Функционал
@@ -182,6 +188,38 @@ let appData = {
 function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
+
+function checkInputText() {
+    const regExp = /^[а-яА-ЯёЁ]+$/,
+        placeholders = document.querySelectorAll('[placeholder="Наименование"]');
+    
+    placeholders.forEach(function(item) {
+        item.addEventListener('input', function() {
+            if (!regExp.test(item.value) && item.value !== '') {
+                item.value = '';
+                alert('Используйте русский алфавит!');
+                return;
+            };  
+        });
+    });
+}
+checkInputText();
+
+function checkInputNumber() {
+    const regExp = /^[0-9]+$/,
+        placeholders = document.querySelectorAll('[placeholder="Сумма"]');
+    
+    placeholders.forEach(function(item) {
+        item.addEventListener('input', function() {
+            if (!regExp.test(item.value) && item.value !== '') {
+                item.value = '';
+                alert('Введите цифры');
+                return;
+            };  
+        });
+    });
+}
+checkInputNumber();
 
 salaryAmount.addEventListener('input', function() {
     if (salaryAmount.value === '') {
