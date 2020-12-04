@@ -1,20 +1,27 @@
-const body = document.body;
+const body = document.body,
+    date = new Date(),
+    div = document.createElement('div'),
+    days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+    month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'],
+    weekday = date.getDate(),
+    monthNumber = date.getMonth(),
+    today = date.getUTCDate(),
+    year = date.getUTCFullYear(),
+    hour = date.getHours(), 
+    minutes = date.getUTCMinutes(),
+    seconds = date.getUTCSeconds(),
+    currentDate = date.toLocaleDateString(),
+    currentTime = date.toLocaleTimeString();
+
+div.textContent = 'Сегодня ' + days[weekday] + ', ' + today + ' ' + month[monthNumber] + ' ' 
++ year + ' года, ' +  hour + ' час ' + minutes + ' минут ' + seconds + ' секунд';
+body.insertAdjacentElement('afterbegin', div);
 
 
-setInterval(function() {
-    const date = new Date();
-    const div = document.createElement('div');
-    div.textContent = date;
-    
-}, 1000)
+
+// setInterval(function() {
+
+// }, 1000)
 
 
 
-// function clock(){
-//     const date = new Date(),
-//         hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
-//         minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes(),
-//         seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
-//     console.log(hours + ':' + minutes + ':' + seconds);
-// }
-// setInterval(clock, 1000);
