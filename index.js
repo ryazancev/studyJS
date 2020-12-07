@@ -1,8 +1,12 @@
-const setBg = () => {
-    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+const colorElem = document.getElementById('color');
+
+const setBg = function () {
+    let randomColor = Math.random().toString(16).slice(2, 8);
+
     document.body.style.backgroundColor = "#" + randomColor;
-    color.innerHTML = "#" + randomColor;
-  }
-  
-  genNew.addEventListener("click", setBg);
-  setBg();
+    colorElem.textContent = "#" + randomColor;
+}
+
+genNew.addEventListener("click", setBg);
+setBg();
+
