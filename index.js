@@ -8,9 +8,9 @@ const body = document.body,
 setInterval(function() {
     const 
         date = new Date(),
-        days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+        days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
         month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'],
-        weekday = date.getDate(),
+        weekday = date.getDay(),
         monthNumber = date.getMonth(),
         today = date.getUTCDate(),
         year = date.getUTCFullYear(),
