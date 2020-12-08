@@ -100,28 +100,22 @@ AppData.prototype.start = function() {
     this.getIncomeMonth();
     this.getBudget();
     this.showResult();
+
 };
 
 AppData.prototype.reset = function() {
-    const allInputs = document.querySelectorAll('.data input[type="text"]');
-
-    this.income = {};
-    this.addIncome = [];
-    this.expenses = {};
-    this.addExpenses = [];
-    this.budget = 0;
-    this.budgetDay = 0;
-    this.budgetMonth = 0;
-    this.expensesMonth = 0;
-    this.incomeMonth = 0;
-    
-    calculateButton.style.display = 'inline-block';
-    resetButton.style.display = 'none';
-    expensesAdd.disabled = false;
-    incomeAdd.disabled = false;
+    const 
+        allInputs = document.querySelectorAll('.data input[type="text"]'),
+        allOutputs = document.querySelectorAll('.result input[type="text"]');
 
     allInputs.forEach(function(item) {
         item.disabled = false;
+        item.value = '';
+        periodSelect.value = '1';
+        periodAmount.textContent = periodSelect.value;
+    });
+
+    allOutputs.forEach(function(item) {
         item.value = '';
     });
 
@@ -144,26 +138,46 @@ AppData.prototype.reset = function() {
         }
     });
 
-    check();
+    this.income = {};
+    this.addIncome = [];
+    this.expenses = {};
+    this.addExpenses = [];
+    this.budget = 0;
+    this.budgetDay = 0;
+    this.budgetMonth = 0;
+    this.expensesMonth = 0;
+    this.incomeMonth = 0;
+    this.deposit = false;
+    this.persentDeposit = 0;
+    this.moneyDeposit = 0;
+    
+    calculateButton.style.display = 'inline-block';
+    resetButton.style.display = 'none';
+    expensesAdd.disabled = false;
+    incomeAdd.disabled = false;
+    
+    periodSelect.addEventListener('input', function() {
+        incomePeriodValue.value = '0';
+    });
 
-    periodSelect.removeEventListener('input', this.range);
+    check();
 };
 
 AppData.prototype.showResult = function() {
+    const _this = this;
+
     budgetMonthValue.value = this.budgetMonth;
     budgetDayValue.value = this.budgetDay;
     expensesMonthValue.value = this.expensesMonth;
     additionalExpensesValue.value = this.addExpenses.join(', ');
     additionalIncomeValue.value = this.addIncome.join(', ');
-    targetMonthValue.value = this.getTargetMonth();
-    incomePeriodValue.value = this.calcSavedMoney();
+    targetMonthValue.value = _this.getTargetMonth();
+    incomePeriodValue.value = _this.calcSavedMoney();
 
-    periodSelect.addEventListener('input', this.range.bind(appData));
+    periodSelect.addEventListener('input', function() {
+        incomePeriodValue.value = _this.calcSavedMoney();
+    });
     
-};
-
-AppData.prototype.range = function() {
-    incomePeriodValue.value = this.budgetMonth * periodSelect.value;;
 };
 
 AppData.prototype.addExpensesBlock = function() {
