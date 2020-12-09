@@ -193,7 +193,8 @@ class AppData {
 
     getExpenses() {        
         expensesItems.forEach((item) => {
-            let itemExpenses = item.querySelector('.expenses-title').value,
+            const 
+                itemExpenses = item.querySelector('.expenses-title').value,
                 cashExpenses = item.querySelector('.expenses-amount').value;
 
                 if (itemExpenses !== '' && cashExpenses !== '') {
@@ -204,7 +205,8 @@ class AppData {
 
     getIncome() {
         incomeItems.forEach((item) => {
-            let itemIncome = item.querySelector('.income-title').value,
+            const 
+                itemIncome = item.querySelector('.income-title').value,
                 cashIncome = item.querySelector('.income-amount').value;
                 
                 if (itemIncome !== '' && cashIncome !== '') {
@@ -249,13 +251,13 @@ class AppData {
     };
 
     getExpensesMonth() {
-        for (let key in appData.expenses) {
+        for (let key in this.expenses) {
             this.expensesMonth += this.expenses[key];
         } 
     };
 
     getIncomeMonth() {
-        for (let key in appData.income) {
+        for (let key in this.income) {
             this.incomeMonth += this.income[key];
         } 
     };
@@ -267,7 +269,7 @@ class AppData {
 
     getTargetMonth() {
         if ((targetAmount.value / this.budgetDay) > 0) {
-            return ('Цель будет достигнута за: ' + Math.ceil(targetAmount.value / this.budgetDay) + ' месяцев');
+            return (`Цель будет достигнута за: ${Math.ceil(targetAmount.value / this.budgetDay)} месяцев`);
         } else {
             return ('Цель не будет достигнута');
         }
