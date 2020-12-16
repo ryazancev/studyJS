@@ -94,6 +94,7 @@ window.addEventListener('DOMContentLoaded', () => {
 				popupContent.style.left = count + '%';
 			} else {
 				cancelAnimationFrame(popupInterval);
+				count = 0;
 			}
 		};
 
@@ -103,14 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 				if (screen.width > 768) {
 					popupContent.style.left = '0%';
-
-					if (!animate) {
-						popupInterval = requestAnimationFrame(popupAnimation);
-						animate = true;
-					} else {
-						animate = false;
-						cancelAnimationFrame(popupInterval);
-					}
+					requestAnimationFrame(popupAnimation);
 				}
 			});
 		});
