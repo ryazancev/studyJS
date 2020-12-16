@@ -81,7 +81,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			popupClose = document.querySelector('.popup-close');
 
 		let count = 0,
-			animate = false,
 			popupInterval;
 
 		//Popup Animation
