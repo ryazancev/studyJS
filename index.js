@@ -162,11 +162,20 @@ window.addEventListener('DOMContentLoaded', () => {
 	const slider = () => {
 		const
 			slide = document.querySelectorAll('.portfolio-item'),
-			dot = document.querySelectorAll('.dot'),
+			dotsContainer = document.querySelector('.portfolio-dots'),
 			sliderContainer = document.querySelector('.portfolio-content');
 
 		let currentSlide = 0, //Текущий слайд
 			interval; //Интервал для setInterval
+
+		//Создаем пагинацию
+		slide.forEach(() => {
+			const dots = document.createElement('li');
+			dots.classList.add('dot');
+			dotsContainer.insertAdjacentElement('beforeend', dots);
+		});
+
+		const dot = document.querySelectorAll('.dot'); // Получаем точки со страницы
 
 		const prevSlide = (elem, index, strClass) => {
 			elem[index].classList.remove(strClass);
