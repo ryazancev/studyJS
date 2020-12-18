@@ -23,11 +23,14 @@ class Todo {
 			};
 			this.todoData.set(newTodo.key, newTodo);
 			this.render();
+			this.input.value = '';
+		} else {
+			alert('пустое дело добавить нельзя!');
 		}
 	}
 
 	generateKey() {
-		return Math.random().toString(36).substring(2, 15) + Math.random.toString(36).substring(2, 15);
+		return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 	}
 
 	render() {
@@ -56,12 +59,28 @@ class Todo {
 		}
 	}
 
-	deleteItem() {
-
+	deleteItem(target) {
+		this.todoData.forEach(item => {
+			if (target.key === item.key) {
+				this.todoData.delete(item.key);
+				this.render();
+			}
+		});
 	}
 
-	completedItem() {
-
+	completedItem(target) {
+		this.todoData.forEach(item => {
+			if (target.key === item.key) {
+				if (!item.completed) {
+					item.completed = true;
+					this.render();
+				} else {
+					item.completed = false;
+					this.render();
+				}
+			}
+		});
+		console.log(this.todoData);
 	}
 
 	handler() {
@@ -69,13 +88,17 @@ class Todo {
 
 		todoContainer.addEventListener('click', event => {
 			const target = event.target;
-			console.log(target);
+
+			if (target.matches('.todo-complete')) this.completedItem(target.closest('.todo-item'));
+
+			if (target.matches('.todo-remove')) this.deleteItem(target.closest('.todo-item'));
 		});
 	}
 
 	init() {
-		this.form.addEventListener('click', this.addTodo.bind(this));
+		this.form.addEventListener('submit', this.addTodo.bind(this));
 		this.render();
+		this.handler();
 	}
 }
 
