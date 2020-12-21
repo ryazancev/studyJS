@@ -43,6 +43,7 @@ window.addEventListener('DOMContentLoaded', () => {
 				timerSeconds.textContent = timer.seconds < 10 ? `0${timer.seconds}` : timer.seconds;
 			}
 		};
+		updateClock();
 
 		const idInterval = setInterval(updateClock, 1000);
 	};
@@ -244,5 +245,38 @@ window.addEventListener('DOMContentLoaded', () => {
 	};
 
 	slider();
+
+	//Фотографии
+	const changePhoto = () => {
+		const commandPhotos = document.querySelectorAll('.command__photo');
+
+		commandPhotos.forEach(element => {
+			const srcDefault = element.src;
+			element.addEventListener('mouseenter', () => {
+				element.src = element.dataset.img;
+			});
+			element.addEventListener('mouseleave', () => {
+				element.src = srcDefault;
+			});
+		});
+	};
+
+	changePhoto();
+
+	//Калькулятор
+	//Валидация
+	const calculateValidation = () => {
+		const
+			calcBlock = document.querySelector('.calc-block'),
+			calcInputs = calcBlock.querySelectorAll('[type="text"]');
+
+		calcInputs.forEach(element => {
+			element.addEventListener('input', () => {
+				element.value = element.value.replace(/\D/g, '');
+			});
+		});
+	};
+
+	calculateValidation();
 
 });
