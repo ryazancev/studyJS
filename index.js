@@ -411,7 +411,7 @@ window.addEventListener('DOMContentLoaded', () => {
 					// eslint-disable-next-line no-undef
 					if (elem.type === 'tel') maskPhone('.form-phone');
 					if (elem.type === 'text' &&
-					!elem.classList.contains('mess')) elem.value = elem.value.replace(/[^а-я ]/g, '');
+						!elem.classList.contains('mess')) elem.value = elem.value.replace(/[^а-я ]/g, '');
 					if (elem.classList.contains('mess')) elem.value = elem.value.replace(/[a-zA-z]+$/g, '');
 				}
 			});
@@ -419,7 +419,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			form.addEventListener('submit', event => {
 				event.preventDefault();
 				form.append(statusMessage);
-				statusMessage.textContent = loadMessage;
+				statusMessage.innerHTML = `<img src="./images/Spinner-1s-38px.svg">`;
 
 				const formData = new FormData(form);
 				const body = {};
@@ -437,8 +437,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
 				for (const elem of form.elements) {
 					if (elem.tagName.toLocaleLowerCase() !== 'button' &&
-					elem.type !== 'button') elem.value = '';
+						elem.type !== 'button') elem.value = '';
 				}
+
+				setTimeout(() => {
+					statusMessage.remove();
+				}, 4000);
 			});
 		});
 	};
