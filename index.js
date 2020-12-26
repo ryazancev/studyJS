@@ -176,21 +176,9 @@ class AppData {
             incomePeriodValue.value = this.calcSavedMoney();
         });
         
-    };
-
-    addExpensesBlock() {
-        const cloneExpensesItem = expensesItems[0].cloneNode(true);
-        cloneExpensesItem.querySelector('.expenses-title').value = '';    
-        cloneExpensesItem.querySelector('.expenses-amount').value = '';
-        expensesAdd.before(cloneExpensesItem);
-        expensesItems = document.querySelectorAll('.expenses-items');
-
-        if (expensesItems.length === 3) {
-            expensesAdd.style.display = 'none';
-        }
-    };
-
-    getExpInc() {
+	};
+	
+	getExpInc() {
         const count = item => {
             const startStr = item.className.split('-')[0];
             const itemTitle = item.querySelector(`.${startStr}-title`).value,
@@ -203,6 +191,18 @@ class AppData {
         expensesItems.forEach(count);
         incomeItems.forEach(count);
     }
+
+    addExpensesBlock() {
+        const cloneExpensesItem = expensesItems[0].cloneNode(true);
+        cloneExpensesItem.querySelector('.expenses-title').value = '';    
+        cloneExpensesItem.querySelector('.expenses-amount').value = '';
+        expensesAdd.before(cloneExpensesItem);
+        expensesItems = document.querySelectorAll('.expenses-items');
+
+        if (expensesItems.length === 3) {
+            expensesAdd.style.display = 'none';
+        }
+    };
 
     addIncomeBlock() {
         const cloneIncomeItem = incomeItems[0].cloneNode(true);
