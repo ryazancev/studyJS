@@ -22,7 +22,7 @@ const
     periodAmount = document.querySelector('.period-amount');
     
 let expensesItems = document.querySelectorAll('.expenses-items'),
-    incomeItems = document.querySelectorAll('.income-items');    
+	incomeItems = document.querySelectorAll('.income-items');   
 
 const checkInputNumber = () => {
     const regExp = /^[0-9]+$/,
@@ -95,8 +95,7 @@ class AppData {
         
         this.getExpInc();
         this.getExpensesMonth();
-        this.getAddExpenses();
-        this.getAddIncome();
+        this.getAddExpInc();
         this.getIncomeMonth();
         this.getBudget();
         this.showResult();
@@ -190,54 +189,46 @@ class AppData {
         }
         expensesItems.forEach(count);
         incomeItems.forEach(count);
-    }
+    };
 
-    addExpensesBlock() {
-        const cloneExpensesItem = expensesItems[0].cloneNode(true);
-        cloneExpensesItem.querySelector('.expenses-title').value = '';    
-        cloneExpensesItem.querySelector('.expenses-amount').value = '';
-        expensesAdd.before(cloneExpensesItem);
-        expensesItems = document.querySelectorAll('.expenses-items');
+	addBlock(target) {
+		let startStr;
 
-        if (expensesItems.length === 3) {
-            expensesAdd.style.display = 'none';
+		if (target.matches('.income_add')) {
+			startStr = target.closest('.income').className;
+		}
+		if (target.matches('.expenses_add')) {
+			startStr = target.closest('.expenses').className;
+		}
+
+		let items = document.querySelectorAll(`.${startStr}-items`);
+		const cloneItem = items[0].cloneNode(true);
+		
+		cloneItem.querySelector(`.${startStr}-title`).value = '';    
+		cloneItem.querySelector(`.${startStr}-amount`).value = '';
+		target.before(cloneItem);
+
+        items = document.querySelectorAll(`.${startStr}-items`);
+
+        if (items.length === 3) {
+            target.style.display = 'none';
         }
-    };
+	};
+	
+	getAddExpInc () {		
+		const getAdd = (item) => {
+			if (item.value.trim() !== '') {
+				this.addIncome.push(item.value.trim());
+			}
+			this.addExpenses.push(item);!!!!!!!!!!!!!!!!!!!!!!!!!!
+		};
 
-    addIncomeBlock() {
-        const cloneIncomeItem = incomeItems[0].cloneNode(true);
-        
-        cloneIncomeItem.querySelector('.income-title').value = '';    
-        cloneIncomeItem.querySelector('.income-amount').value = '';
-        incomeAdd.before(cloneIncomeItem);    
-        incomeItems = document.querySelectorAll('.income-items');
-
-        if (incomeItems.length === 3) {
-            incomeAdd.style.display = 'none';
-        }
-    };
-
-    getAddExpenses() {   
-        let addExpenses = additionalExpensesItem.value.split(', ');
-
-        addExpenses.forEach((item) => {
-            item = item.trim();
-
-            if (item !== '') {
-                this.addExpenses.push(item);
-            }
-        })
-    };
-
-    getAddIncome () {
-        additionalIncomeItems.forEach((item) => {
-            let itemValue = item.value.trim();
-
-            if (itemValue !== '') {
-                this.addIncome.push(itemValue);
-            }
-        });
-    };
+		if (additionalExpensesItem.value !== '') {
+			let addExpenses = additionalExpensesItem.value.split(', ');
+			addExpenses.forEach(getAdd);
+		}
+		additionalIncomeItems.forEach(getAdd);
+	};
 
     getExpensesMonth() {
         for (let key in appData.expenses) {
@@ -299,8 +290,14 @@ class AppData {
     eventsListeners() {
         calculateButton.addEventListener('click', this.start.bind(this));
         resetButton.addEventListener('click', this.reset);
-        expensesAdd.addEventListener('click', this.addExpensesBlock);
-        incomeAdd.addEventListener('click', this.addIncomeBlock);
+        expensesAdd.addEventListener('click', evt => {
+			let target = evt.target;
+			this.addBlock(target);
+		});
+        incomeAdd.addEventListener('click', evt => {
+			const target = evt.target;
+			this.addBlock(target);
+		});
         periodSelect.addEventListener('input', () => {
             periodAmount.textContent = periodSelect.value;
         });
