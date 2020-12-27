@@ -215,20 +215,27 @@ class AppData {
         }
 	};
 	
-	getAddExpInc () {		
-		const getAdd = (item) => {
-			if (item.value.trim() !== '') {
-				this.addIncome.push(item.value.trim());
-			}
-			this.addExpenses.push(item);!!!!!!!!!!!!!!!!!!!!!!!!!!
-		};
+	getAddExpInc () {	
 
-		if (additionalExpensesItem.value !== '') {
 			let addExpenses = additionalExpensesItem.value.split(', ');
-			addExpenses.forEach(getAdd);
-		}
-		additionalIncomeItems.forEach(getAdd);
+	
+			addExpenses.forEach(item => {
+				item = item.trim();
+	
+				if (item !== '') {
+					this.addExpenses.push(item);
+				}
+			})
+		
+			additionalIncomeItems.forEach(item => {
+				let itemValue = item.value.trim();
+	
+				if (itemValue !== '') {
+					this.addIncome.push(itemValue);
+				}
+			});
 	};
+
 
     getExpensesMonth() {
         for (let key in appData.expenses) {
