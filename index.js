@@ -380,7 +380,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	const sendForm = () => {
 		const
 			errorMessage = 'Что-то пошло не так...',
-			loadMessage = 'Загрузка...',
 			successMessage = 'Заявка отправлена';
 
 		const forms = document.querySelectorAll('form');
