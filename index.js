@@ -386,12 +386,12 @@ window.addEventListener('DOMContentLoaded', () => {
 		const statusMessage = document.createElement('div');
 		statusMessage.style.color = '#ffffff';
 
-		const postData = body => fetch('./server.php', {
+		const postData = formData => fetch('./server.php', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(body)
+			body: formData
 		});
 
 		forms.forEach(form => {
@@ -411,13 +411,8 @@ window.addEventListener('DOMContentLoaded', () => {
 				statusMessage.innerHTML = `<img src="./images/Spinner-1s-38px.svg">`;
 
 				const formData = new FormData(form);
-				const body = {};
 
-				formData.forEach((value, key) => {
-					body[key] = value;
-				});
-
-				postData(body)
+				postData(formData)
 					.then(response => {
 						if (response.status !== 200) throw new Error('status network not 200');
 						statusMessage.textContent = successMessage;
