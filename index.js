@@ -386,23 +386,23 @@ window.addEventListener('DOMContentLoaded', () => {
 		const statusMessage = document.createElement('div');
 		statusMessage.style.color = '#ffffff';
 
-		const postData = (body, outputData, errorData) => {
+		const postData = body => new Promise((resolve, reject) => {
 			const request = new XMLHttpRequest();
 
 			request.addEventListener('readystatechange', () => {
 				if (request.readyState !== 4) return;
 
 				if (request.status === 200) {
-					outputData();
+					resolve(body);
 				} else {
-					errorData(request.status);
+					reject(request.status);
 				}
 			});
 
 			request.open('POST', './server.php');
 			request.setRequestHeader('Content-Type', 'application/json');
 			request.send(JSON.stringify(body));
-		};
+		});
 
 		forms.forEach(form => {
 			form.addEventListener('input', () => {
@@ -427,22 +427,24 @@ window.addEventListener('DOMContentLoaded', () => {
 					body[key] = value;
 				});
 
-				postData(body, () => {
-					statusMessage.textContent = successMessage;
-				}, error => {
-					statusMessage.textContent = errorMessage;
-					console.error(error);
-				});
-
-				for (const elem of form.elements) {
-					if (elem.tagName.toLocaleLowerCase() !== 'button' &&
-						elem.type !== 'button') elem.value = '';
-				}
-
-				setTimeout(() => {
-					statusMessage.remove();
-				}, 4000);
+				postData(body)
+					.then(() => {
+						statusMessage.textContent = successMessage;
+					})
+					.catch(error => {
+						statusMessage.textContent = errorMessage;
+						console.error(error);
+					});
 			});
+
+			for (const elem of form.elements) {
+				if (elem.tagName.toLocaleLowerCase() !== 'button' &&
+						elem.type !== 'button') elem.value = '';
+			}
+
+			setTimeout(() => {
+				statusMessage.remove();
+			}, 4000);
 		});
 	};
 
