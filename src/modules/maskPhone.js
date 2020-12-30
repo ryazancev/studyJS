@@ -1,5 +1,4 @@
-'use strict';
-
+// Маска для поля ввода телефона
 function maskPhone(selector, masked = '+7 (___) ___-__-__') {
 	const elems = document.querySelectorAll(selector);
 
@@ -31,5 +30,6 @@ function maskPhone(selector, masked = '+7 (___) ___-__-__') {
 		elem.addEventListener("focus", mask);
 		elem.addEventListener("blur", mask);
 	}
-
 }
+
+ maskPhone;

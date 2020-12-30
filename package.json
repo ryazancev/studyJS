@@ -1,0 +1,24 @@
+{
+  "name": "JS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryazancev/studyJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryazancev/studyJS/issues"
+  },
+  "homepage": "https://github.com/ryazancev/studyJS#readme",
+  "devDependencies": {
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.0"
+  }
+}
