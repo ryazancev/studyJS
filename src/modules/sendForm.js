@@ -38,17 +38,16 @@ const sendForm = () => {
 				.then(response => {
 					if (response.status !== 200) throw new Error('status network not 200');
 					statusMessage.textContent = successMessage;
+					for (const elem of form.elements) {
+						if (elem.tagName.toLocaleLowerCase() !== 'button' &&
+								elem.type !== 'button') elem.value = '';
+					}
 				})
 				.catch(error => {
 					statusMessage.textContent = errorMessage;
 					console.error(error);
 				});
 		});
-
-		for (const elem of form.elements) {
-			if (elem.tagName.toLocaleLowerCase() !== 'button' &&
-					elem.type !== 'button') elem.value = '';
-		}
 
 		setTimeout(() => {
 			statusMessage.remove();
