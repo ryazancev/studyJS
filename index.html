@@ -8,11 +8,36 @@
 </head>
 <body>
 	<section class="converter">
-		<select name="converter__select" class="converter__select">
-			<option value="usd" class="select__option">Доллары США</option>
-			<option value="eur" class="select__option">Евро</option>
-		</select>
-		
+		<div class="converter__wrapper">
+			<select name="converter__select" class="converter__select" data-converter="to-rub">
+				<option value="none" class="select__option">Выберите валюту</option>
+				<option value="usd" class="select__option">Доллары США</option>
+				<option value="eur" class="select__option">Евро</option>
+			</select>
+
+			<input type="text" id="input-val" class="converter__item input__val">
+			<label class="converter__item label-val" for="input-val">Доллар США (USD)</label>
+
+			<input type="text" id="output-rub" class="converter__item output__rub" disabled>
+			<label class="converter__item" for="output-rub">Российский рубль (RUB)</label>
+
+			<button type="button" id="to-rub" class="converter__button">Ковертировать</button>
+		</div>
+		<div class="converter__wrapper">
+			<select name="converter__select" class="converter__select" data-converter="to-val">
+				<option value="none" class="select__option">Выберите валюту</option>
+				<option value="usd" class="select__option">Доллары США</option>
+				<option value="eur" class="select__option">Евро</option>
+			</select>
+
+			<input type="text" id="input-rub" class="converter__item input__rub">
+			<label class="converter__item label-rub" for="input-rub">Российский рубль (RUB)</label>
+
+			<input type="text" id="output-val" class="converter__item output-val" disabled>
+			<label class="converter__item label-val" for="output-val">Доллар США (USD)</label>
+
+			<button type="button" id="to-val" class="converter__button">Ковертировать</button>
+		</div>
 	</section>
 	<script src="./script.js"></script>
 </body>
