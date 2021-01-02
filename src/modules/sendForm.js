@@ -8,12 +8,12 @@ const sendForm = () => {
 	const statusMessage = document.createElement('div');
 	statusMessage.style.color = '#ffffff';
 
-	const postData = formData => fetch('./server.php', {
+	const postData = body => fetch('./server.php', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: formData
+		body: JSON.stringify(body)
 	});
 
 	forms.forEach(form => {
@@ -21,9 +21,13 @@ const sendForm = () => {
 			for (const elem of form.elements) {
 				// eslint-disable-next-line no-undef
 				if (elem.type === 'tel') maskPhone('.form-phone');
+				if (elem.type === 'email') {
+					elem.required = true;
+					elem.value = elem.value.replace(/^\w+@\w+\.\w{2,}$/, '');
+				}
 				if (elem.type === 'text' &&
-					!elem.classList.contains('mess')) elem.value = elem.value.replace(/[^а-я ]/g, '');
-				if (elem.classList.contains('mess')) elem.value = elem.value.replace(/[a-zA-z]+$/g, '');
+					!elem.classList.contains('mess')) elem.value = elem.value.replace(/[^а-я ]/, '');
+				if (elem.classList.contains('mess')) elem.value = elem.value.replace(/[a-zA-z]+$/, '');
 			}
 		});
 
@@ -33,25 +37,28 @@ const sendForm = () => {
 			statusMessage.innerHTML = `<img src="./images/Spinner-1s-38px.svg">`;
 
 			const formData = new FormData(form);
+			const body = {};
+			formData.forEach((value, key) => {
+				body[key] = value;
+			});
 
-			postData(formData)
+			postData(body)
 				.then(response => {
 					if (response.status !== 200) throw new Error('status network not 200');
 					statusMessage.textContent = successMessage;
-					for (const elem of form.elements) {
-						if (elem.tagName.toLocaleLowerCase() !== 'button' &&
-								elem.type !== 'button') elem.value = '';
-					}
+					setTimeout(() => {
+						for (const elem of form.elements) {
+							if (elem.tagName.toLocaleLowerCase() !== 'button' &&
+									elem.type !== 'button') elem.value = '';
+						}
+						statusMessage.remove();
+					}, 5000);
 				})
 				.catch(error => {
 					statusMessage.textContent = errorMessage;
 					console.error(error);
 				});
 		});
-
-		setTimeout(() => {
-			statusMessage.remove();
-		}, 10000);
 	});
 };
 
