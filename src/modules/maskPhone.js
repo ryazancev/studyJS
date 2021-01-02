@@ -1,5 +1,5 @@
 // Маска для поля ввода телефона
-function maskPhone(selector, masked = '+7 (___) ___-__-__') {
+export default function maskPhone(selector, masked = '+7 (___) ___-__-__') {
 	const elems = document.querySelectorAll(selector);
 
 	function mask(event) {

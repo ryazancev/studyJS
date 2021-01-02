@@ -10,7 +10,7 @@ import calc from './modules/calc';
 import sendForm from './modules/sendForm';
 
 // Таймер
-countTimer('30 december 2020');
+countTimer('20 january 2021');
 // Меню
 toggleMenu();
 // Попап

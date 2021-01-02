@@ -1,5 +1,5 @@
 // Анимация база
-function animate({ timing, draw, duration }) {
+export default function animate({ timing, draw, duration }) {
 
 	const start = performance.now();
 

@@ -1,3 +1,4 @@
+import animate from './animate';
 // Калькулятор
 const calc = (price = 100) => {
 	const

@@ -1,3 +1,4 @@
+import maskPhone from './maskPhone';
 // send-ajax-form
 const sendForm = () => {
 	const
