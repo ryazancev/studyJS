@@ -19,7 +19,7 @@ const toggleMenu = () => {
 
 		const target = event.target;
 
-		if (target.matches('a')) {
+		if (target.matches('a') && !target.classList.contains('close-btn')) {
 			const blockID = target.hash.substr(1);
 
 			document.getElementById(blockID).scrollIntoView({

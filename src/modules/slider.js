@@ -9,9 +9,10 @@ const slider = () => {
 		interval; //Интервал для setInterval
 
 	//Создаем пагинацию
-	slide.forEach(() => {
+	slide.forEach((item, i) => {
 		const dots = document.createElement('li');
 		dots.classList.add('dot');
+		if (i === 0) dots.classList.add('dot-active');
 		dotsContainer.insertAdjacentElement('beforeend', dots);
 	});
 
