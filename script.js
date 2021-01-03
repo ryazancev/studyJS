@@ -51,6 +51,7 @@ section.addEventListener('click', event => {
 				outputRub.value = '';
 				inputVal.value = '';
 				labelVal[0].textContent = 'Доллар США (USD)';
+				// сделать клик
 			} 
 			if (target.value === 'eur') {
 				outputRub.value = '';
