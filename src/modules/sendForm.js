@@ -21,19 +21,18 @@ const sendForm = () => {
 		form.addEventListener('input', () => {
 			for (const elem of form.elements) {
 				// eslint-disable-next-line no-undef
-				if (elem.type === 'tel') maskPhone('.form-phone');
-				if (elem.type === 'email') {
-					elem.required = true;
-					elem.value = elem.value.replace(/^\w+@\w+\.\w{2,}$/, '');
-				}
 				if (elem.type === 'text' &&
-					!elem.classList.contains('mess')) elem.value = elem.value.replace(/[^а-я ]/, '');
-				if (elem.classList.contains('mess')) elem.value = elem.value.replace(/[a-zA-z]+$/, '');
+					!elem.classList.contains('mess')) elem.value = elem.value.replace(/[^А-яа-я ]/, '');
+				if (elem.type === 'tel') maskPhone('.form-phone');
+				if (elem.classList.contains('mess')) elem.value = elem.value
+					.replace(/[a-zA-z\[\]\/\\\{\}\(\)\*\+\^\$\|\#\$\%\@\&\№]/, '');
 			}
 		});
 
 		form.addEventListener('submit', event => {
 			event.preventDefault();
+
+
 			form.append(statusMessage);
 			statusMessage.innerHTML = `<img src="./images/Spinner-1s-38px.svg">`;
 
