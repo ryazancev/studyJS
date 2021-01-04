@@ -39,8 +39,7 @@ const sendForm = () => {
 				if (elem.type === 'text') {
 					if (elem.value.length < 2 || elem.value.length > 50) {
 						elem.setCustomValidity('Имя должно содержать не менее 2 и не более 50 символов');
-					} else {
-						elem.setCustomValidity('');
+						return;
 					}
 				}
 
