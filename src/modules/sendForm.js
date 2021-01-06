@@ -21,12 +21,8 @@ const sendForm = () => {
 		form.addEventListener('input', () => {
 			for (const elem of form.elements) {
 				// eslint-disable-next-line no-undef
-				if (elem.type === 'text' && !elem.classList.contains('mess')) {
-					elem.value = elem.value.replace(/[^А-яа-я ]/, '');
-				}
-				if (elem.type === 'email') {
-					elem.required = true;
-				}
+				if (elem.type === 'text' &&
+				!elem.classList.contains('mess')) elem.value = elem.value.replace(/[^А-яа-я ]/, '');
 				if (elem.type === 'tel') maskPhone('.form-phone');
 				if (elem.classList.contains('mess')) elem.value = elem.value
 					.replace(/[a-zA-z\[\]\/\\\{\}\(\)\*\+\^\$\|\#\$\%\@\&\№]/, '');
@@ -35,24 +31,26 @@ const sendForm = () => {
 
 		form.addEventListener('submit', event => {
 			event.preventDefault();
+			form.append(statusMessage);
 			for (const elem of form.elements) {
 				if (elem.type === 'text') {
 					if (elem.value.length < 2 || elem.value.length > 50) {
-						elem.setCustomValidity('Имя должно содержать не менее 2 и не более 50 символов');
+						elem.value = '';
+						statusMessage.textContent = 'Имя должно включать не менее 2 и не более 50 символов';
 						return;
 					}
 				}
 
 				if (elem.type === 'email') {
-					const reg = /[a-zA-Z]{2,10}@[a-zA-Z]+\.[a-z]{2,4}/;
-					if (!reg.test(elem.value)) {
-						elem.setCustomValidity('Пожалуйста введите корректный email');
+					const reg = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
+					if (elem.value !== '' && !reg.test(elem.value)) {
+						elem.value = '';
+						statusMessage.textContent = 'Введите корректный Email';
 						return;
 					}
 				}
 			}
 
-			form.append(statusMessage);
 			statusMessage.innerHTML = `<img src="./images/Spinner-1s-38px.svg">`;
 
 			const formData = new FormData(form);
