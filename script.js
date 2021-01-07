@@ -1,7 +1,6 @@
 'use strict';
 const
 	section = document.querySelector('.converter'),
-	select = document.querySelector('.converter__select'),
 	buttonToRub = document.getElementById('to-rub'),
 	buttonToVal = document.getElementById('to-val'),
 	inputVal = document.getElementById('input-val'),
@@ -31,6 +30,9 @@ const calcEur = () => {
 			.then(data => {
 				const rub = data.rates.RUB;
 				outputRub.value = (inputVal.value * rub).toFixed(2);
+				setTimeout(() => {
+					inputVal.value = '';
+				}, 3000)
 			})
 };
 
@@ -39,6 +41,31 @@ const calcUsd = () => {
 			.then(data => {
 				const rub = data.rates.RUB;
 				outputRub.value = (inputVal.value * rub).toFixed(2);
+				setTimeout(() => {
+					inputVal.value = '';
+				}, 3000)
+			})
+};
+
+const calcRubToEur = () => {
+	getResource(urlEur)
+			.then(data => {
+				const rub = data.rates.RUB;
+				outputVal.value = (inputRub.value / rub).toFixed(2);
+				setTimeout(() => {
+					inputRub.value = '';
+				}, 3000)
+			})
+};
+
+const calcRubToUsd = () => {
+	getResource(urlUsd)
+			.then(data => {
+				const rub = data.rates.RUB;
+				outputVal.value = (inputRub.value / rub).toFixed(2);
+				setTimeout(() => {
+					inputRub.value = '';
+				}, 3000)
 			})
 };
 
@@ -51,12 +78,16 @@ section.addEventListener('click', event => {
 				outputRub.value = '';
 				inputVal.value = '';
 				labelVal[0].textContent = 'Доллар США (USD)';
-				// сделать клик
-			} 
-			if (target.value === 'eur') {
+				buttonToRub.removeEventListener('click', calcEur);
+				buttonToRub.addEventListener('click', calcUsd);
+			} else if (target.value === 'eur') {
 				outputRub.value = '';
 				inputVal.value = '';
 				labelVal[0].textContent = 'Евро (EUR)';
+				buttonToRub.removeEventListener('click', calcUsd);
+				buttonToRub.addEventListener('click', calcEur);
+			} else {
+				return
 			}
 		})
 	} else {
@@ -65,12 +96,16 @@ section.addEventListener('click', event => {
 				outputVal.value = '';
 				inputRub.value = '';
 				labelVal[1].textContent = 'Доллар США (USD)';
-				
-			} 
-			if (target.value === 'eur') {
+				buttonToVal.removeEventListener('click', calcRubToEur);
+				buttonToVal.addEventListener('click', calcRubToUsd);
+			} else if (target.value === 'eur') {
 				outputVal.value = '';
 				inputRub.value = '';
 				labelVal[1].textContent = 'Евро (EUR)';
+				buttonToVal.removeEventListener('click', calcRubToUsd);
+				buttonToVal.addEventListener('click', calcRubToEur);
+			} else {
+				return
 			}
 		})
 	}

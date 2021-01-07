@@ -1,6 +1,7 @@
 body {
     margin: 0;
-    padding: 0;
+	padding: 0;
+	background-color: bisque;
 }
 
 *,
@@ -10,43 +11,22 @@ body {
 }
 
 .converter {
-	padding: 10px;
-	background-color: bisque;
-}
-
-.converter__button {
-	display: block;
-	margin-top: 5px;
-	padding: 5px;
-}
-
-.converter__label {
-	margin-right: 5px;
-}
-
-.converter__input {
-	padding: 2px;
-	margin-right: 5px;
-}
-
-.converter__output {
-	background-color: transparent;
-	padding: 2px;
-	border: 1px solid black;
-	border-radius: 2px;
-}
-
-.converter__select {
-	margin: 10px;
-	padding: 5px;
+	padding: 80px;
 }
 
 .converter__wrapper {
-	margin: 0 auto;
-	margin-bottom: 10px;
-	width: 700px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+	/* width: 1000px; */
+	margin: 20px auto;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 10px;
 }
 
+.converter__button {
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+.converter__item {
+	padding: 5px;
+}
