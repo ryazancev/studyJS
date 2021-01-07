@@ -8,6 +8,7 @@ import slider from './modules/slider';
 import changePhoto from './modules/changePhoto';
 import calc from './modules/calc';
 import sendForm from './modules/sendForm';
+import companiesCarousel from './modules/companiesCarousel';
 
 // Таймер
 countTimer('20 january 2021');
@@ -25,3 +26,5 @@ changePhoto();
 calc(100);
 // Отправка формы
 sendForm();
+// Карусель
+companiesCarousel();
