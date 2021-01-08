@@ -47,6 +47,7 @@ class Todo {
 		li.insertAdjacentHTML('beforeend', `
             <span class="text-todo">${todo.value}</span>
             <div class="todo-buttons">
+                <button class="todo-edit"></button>
                 <button class="todo-remove"></button>
                 <button class="todo-complete"></button>
             </div>
@@ -80,7 +81,14 @@ class Todo {
 				}
 			}
 		});
-		console.log(this.todoData);
+	}
+
+	editItem(target) {
+		this.todoData.forEach(item => {
+			if (target.key === item.key) {
+				target.children[0].setAttribute('contenteditable', 'true');
+			}
+		});
 	}
 
 	handler() {
@@ -90,8 +98,8 @@ class Todo {
 			const target = event.target;
 
 			if (target.matches('.todo-complete')) this.completedItem(target.closest('.todo-item'));
-
 			if (target.matches('.todo-remove')) this.deleteItem(target.closest('.todo-item'));
+			if (target.matches('.todo-edit')) this.editItem(target.closest('.todo-item'));
 		});
 	}
 
