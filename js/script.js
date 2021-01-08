@@ -1,5 +1,7 @@
 'use strict';
 
+import animate from './animate.js';
+
 class Todo {
 	constructor(form, input, todoList, todoCompleted) {
 		this.form = document.querySelector(form);
@@ -51,13 +53,24 @@ class Todo {
                 <button class="todo-remove"></button>
                 <button class="todo-complete"></button>
             </div>
-        `);
+		`);
+		li.style.opacity = 0;
 
 		if (todo.completed) {
 			this.todoCompleted.append(li);
 		} else {
 			this.todoList.append(li);
 		}
+
+		animate({
+			duration: 1000,
+			timing(timeFraction) {
+				return timeFraction;
+			},
+			draw(progress) {
+				li.style.opacity = progress;
+			}
+		});
 	}
 
 	deleteItem(target) {
