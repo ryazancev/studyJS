@@ -1,6 +1,25 @@
 'use strict';
 
-import animate from './animate.js';
+function animate({ timing, draw, duration }) {
+
+	const start = performance.now();
+
+	requestAnimationFrame(function animate(time) {
+		// timeFraction изменяется от 0 до 1
+		let timeFraction = (time - start) / duration;
+		if (timeFraction > 1) timeFraction = 1;
+
+		// вычисление текущего состояния анимации
+		const progress = timing(timeFraction);
+
+		draw(progress); // отрисовать её
+
+		if (timeFraction < 1) {
+			requestAnimationFrame(animate);
+		}
+
+	});
+}
 
 class Todo {
 	constructor(form, input, todoList, todoCompleted) {
@@ -38,7 +57,9 @@ class Todo {
 	render() {
 		this.todoList.textContent = '';
 		this.todoCompleted.textContent = '';
-		this.todoData.forEach(this.createItem, this); //Передадим this 2 параметром, т.к callback не имеет приаязки
+		this.todoData.forEach(item => {
+			this.createItem(item);
+		});
 		this.addToStorage();
 	}
 
@@ -54,30 +75,61 @@ class Todo {
                 <button class="todo-complete"></button>
             </div>
 		`);
-		li.style.opacity = 0;
 
 		if (todo.completed) {
-			this.todoCompleted.append(li);
+			if (todo.current) {
+				li.style.opacity = 0;
+				this.todoCompleted.append(li);
+				animate({
+					duration: 1000,
+					timing(timeFraction) {
+						return timeFraction;
+					},
+					draw(progress) {
+						li.style.opacity = progress;
+					}
+				});
+			} else {
+				this.todoCompleted.append(li);
+			}
 		} else {
-			this.todoList.append(li);
+			if (todo.current) {
+				li.style.opacity = 0;
+				this.todoList.append(li);
+				animate({
+					duration: 1000,
+					timing(timeFraction) {
+						return timeFraction;
+					},
+					draw(progress) {
+						li.style.opacity = progress;
+					}
+				});
+			} else {
+				this.todoList.append(li);
+			}
 		}
 
-		animate({
-			duration: 1000,
-			timing(timeFraction) {
-				return timeFraction;
-			},
-			draw(progress) {
-				li.style.opacity = progress;
-			}
-		});
+		delete todo.current;
 	}
 
 	deleteItem(target) {
 		this.todoData.forEach(item => {
 			if (target.key === item.key) {
-				this.todoData.delete(item.key);
-				this.render();
+				animate({
+					duration: 1000,
+					timing(timeFraction) {
+						return timeFraction;
+					},
+					draw(progress) {
+						target.style.opacity = 1 - progress;
+					}
+				});
+				setTimeout(() => {
+					this.todoData.delete(item.key);
+					this.render();
+				}, 1000);
+
 			}
 		});
 	}
@@ -87,8 +139,10 @@ class Todo {
 			if (target.key === item.key) {
 				if (!item.completed) {
 					item.completed = true;
+					item.current = true;
 					this.render();
 				} else {
+					item.current = true;
 					item.completed = false;
 					this.render();
 				}
