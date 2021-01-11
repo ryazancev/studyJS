@@ -1,6 +1,10 @@
 // eslint-disable-next-line strict
 'use strict';
 
+import './index.html';
+import './css/bootstrap.min.css';
+import './css/style.min.css';
+
 import countTimer from './modules/countTimer';
 import toggleMenu from './modules/toggleMenu';
 import togglePopup from './modules/togglePopup';
