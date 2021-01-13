@@ -106,8 +106,8 @@ class Carousel {
 	addArrow() { // Добавим кнопки если их нет в разметке
 		this.prev = document.createElement('button');
 		this.next = document.createElement('button');
-		this.prev.innerHTML = `<div class="arrow"></div>`;
-		this.next.innerHTML = `<div class="arrow"></div>`;
+		this.prev.innerHTML = `<div class="arrow arrow--left "></div>`;
+		this.next.innerHTML = `<div class="arrow arrow--right"></div>`;
 		this.prev.className = 'slider__prev';
 		this.next.className = 'slider__next';
 		this.main.append(this.prev);
@@ -134,20 +134,26 @@ class Carousel {
 				border-right: 2px solid #000;
 			}
 
+			.arrow--left {
+				transform: rotate(-135deg);
+			}
+
+			.arrow--right {
+				transform: rotate(45deg);
+			}
+
 			.slider__next {
 				top: 50px;
 				right: -10px;
 				padding-left: 12px;
 				border-left-color: #24182e;
-				transform: rotate(45deg);
 			}
 
 			.slider__prev {
 				top: 50px;
 				left: 20px;
 				padding-left: 12px;
-				border-right-color: #521833;
-				transform: rotate(-135deg);
+				border-right-color: #521833;	
 			}
 
 			.slider__prev:hover,

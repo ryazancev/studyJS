@@ -73,14 +73,14 @@ const gallerySlider = () => {
 		const target = event.target;
 		const pagBlock = document.querySelectorAll('.pagination__item');
 
-		if (!target.matches('.slider__prev, .slider__next, .pagination__item')) return;
+		if (!target.matches('.arrow, .pagination__item')) return;
 
 		slide[currentSlide].style.display = 'none';
 		pagBlock[currentSlide].classList.remove('pagination__item--active');
 
-		if (target.matches('.slider__next')) {
+		if (target.closest('.slider__next')) {
 			currentSlide++;
-		} else if (target.matches('.slider__prev')) {
+		} else if (target.closest('.slider__prev')) {
 			currentSlide--;
 		} else if (target.matches('.pagination__item')) {
 			pagBlock.forEach((elem, index) => {
