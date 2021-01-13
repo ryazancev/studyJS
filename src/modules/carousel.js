@@ -48,7 +48,6 @@ class Carousel {
 
 	addStyle() {
 		let style = document.getElementById('carousel-style'); // Присвоим стили по id
-		console.log(1);
 		if (!style) { // Если стилей с таким id нет, то добавим их
 			style = document.createElement('style');
 			style.id = 'carousel-style';
