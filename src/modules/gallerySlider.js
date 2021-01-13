@@ -1,7 +1,13 @@
 const gallerySlider = () => {
 	const
 		sliderContainer = document.querySelector('.gallery-slider'),
-		slide = sliderContainer.children;
+		slide = sliderContainer.querySelectorAll('.slide'),
+		style = document.querySelector('style'),
+		prevBtn = document.querySelector('.slider__prev').cloneNode(true),
+		nextBtn = document.querySelector('.slider__next').cloneNode(true),
+		pagination = document.createElement('ul');
+
+	let currentSlide = 0; //Текущий слайд
 
 	// Добавим всем слайдам кроме первого display: none;
 	for (let i = 0; i < slide.length; i++) {
@@ -10,65 +16,84 @@ const gallerySlider = () => {
 		}
 	}
 
-	//Добавим кнопки, чтобы управлять слайдером
-	const
-		prevBtn = document.createElement('button'),
-		nextBtn = document.createElement('button');
-
-	prevBtn.className = 'slider__prev';
-	nextBtn.className = 'slider__next';
-	sliderContainer.append(prevBtn);
-	sliderContainer.append(nextBtn);
+	// Установим relative чтобы разместить кнопки и пагинацию
 	sliderContainer.style.position = 'relative';
 
-	let currentSlide = 0, //Текущий слайд
-		interval; //Интервал для setInterval
+	// Закинем кнопки из карусели в тело слайдера
+	sliderContainer.append(prevBtn);
+	sliderContainer.append(nextBtn);
 
-	const prevSlide = (elem, index) => {
-		elem[index].style.display = 'none';
+	// создаем пагинацию
+	pagination.className = 'pagination__list';
+	sliderContainer.append(pagination);
+	slide.forEach((item, i) => {
+		const pagItem = document.createElement('li');
+		pagItem.className = 'pagination__item';
+		if (i === 0) pagItem.classList.add('pagination__item--active');
+		pagination.append(pagItem);
+	});
 
-	};
+	// Кнопкам поменяем положение в пространсвте, пагинации добавим стилей
+	style.insertAdjacentText('beforeend', `
+		.gallery-slider .slider__prev,
+		.gallery-slider .slider__next {
+			top: 45%;
+		}
 
-	const nextSlide = (elem, index) => {
-		elem[index].style.display = 'block';
-	};
+		.gallery-slider .slider__prev {
+			left: 40px;
+		}
 
+		.gallery-slider .slider__next {
+			right: 40px;
+		}
+
+		.pagination__list {
+			width: 200px;
+			display: flex;
+			justify-content: space-between;
+			position: absolute;
+			bottom: 20px;
+			left: 39%;
+		}
+
+		.pagination__item {
+			width: 20px;
+			height: 10px;
+			border: 2px solid white;
+			cursor: pointer;
+		}
+
+		.pagination__item--active {
+			background-color: #f4d11a;
+		}
+	`);
 
 	sliderContainer.addEventListener('click', event => {
 		const target = event.target;
+		const pagBlock = document.querySelectorAll('.pagination__item');
 
-		event.preventDefault();
+		if (!target.matches('.slider__prev, .slider__next, .pagination__item')) return;
 
-		if (!target.matches('.slider__prev, .slider__next')) return;
-
-		prevSlide(slide, currentSlide);
-		// prevSlide(dot, currentSlide, 'dot-active');
+		slide[currentSlide].style.display = 'none';
+		pagBlock[currentSlide].classList.remove('pagination__item--active');
 
 		if (target.matches('.slider__next')) {
 			currentSlide++;
 		} else if (target.matches('.slider__prev')) {
 			currentSlide--;
-		} else if (target.matches('.dot')) {
-			// dot.forEach((elem, index) => {
-			// 	if (elem === target) currentSlide = index;
-			// });
+		} else if (target.matches('.pagination__item')) {
+			pagBlock.forEach((elem, index) => {
+				if (elem === target) currentSlide = index;
+			});
 		}
 
 		if (currentSlide >= slide.length) currentSlide = 0;
 		if (currentSlide < 0) currentSlide = slide.length - 1;
 
-		nextSlide(slide, currentSlide);
-		// nextSlide(dot, currentSlide, 'dot-active');
+		slide[currentSlide].style.display = 'block';
+		pagBlock[currentSlide].classList.add('pagination__item--active');
 	});
-	// sliderContainer.addEventListener('mouseover', event => {
-	// 	if (event.target.matches('.portfolio-btn') ||
-	// 		event.target.matches('.dot')) stopSlide();
-	// });
-	// sliderContainer.addEventListener('mouseout', event => {
-	// 	if (event.target.matches('.portfolio-btn') ||
-	// 		event.target.matches('.dot')) startSlide();
-	// });
-
 };
 
 export default gallerySlider;
