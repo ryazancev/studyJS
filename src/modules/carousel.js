@@ -16,7 +16,7 @@ class Carousel {
 			position: 0, // Начальная позиция слайда
 			infinity,
 			maxPosition: this.slides.length - this.slidesToShow, // Вычислим максимальную позицию
-			widthSlide: Math.floor(100 / this.slidesToShow) // Сколько слайдов будет на экране
+			widthSlide: Math.ceil(100 / this.slidesToShow) // Сколько слайдов будет на экране
 		};
 		this.responsive = responsive;
 	}
@@ -25,8 +25,8 @@ class Carousel {
 		this.addClass(); //Добавим классы на слайды
 		this.addStyle(); //Добавим стили на слайды
 
-		if (this.prev && this.next) {// Если у нас есть кнопки в разметке
-			this.controlSlider(); 
+		if (this.prev && this.next) { // Если у нас есть кнопки в разметке
+			this.controlSlider();
 		} else { // Если кнопок нет
 			this.addArrow();
 			this.controlSlider();
@@ -47,8 +47,8 @@ class Carousel {
 	}
 
 	addStyle() {
-		let style = document.getElementById('carousel-style'); // Присвоим стили по id 
-
+		let style = document.getElementById('carousel-style'); // Присвоим стили по id
+		console.log(1);
 		if (!style) { // Если стилей с таким id нет, то добавим их
 			style = document.createElement('style');
 			style.id = 'carousel-style';
@@ -57,37 +57,38 @@ class Carousel {
 		style.textContent = `
 			.slider {
 				overflow: hidden !important;
+				position: relative;
+				margin-bottom: 40px;
 			}
 
 			.slider__wrap {
+				
 				display: flex !important;
 				transition: transform 0.5s !important;
 				will-change: transform !important;
 			}
 
 			.slider__item {
-				display: flex !important;
-				align-items: center;
-				justify-content: space-around;
 				flex: 0 0 ${this.options.widthSlide}% !important;
-				margin: auto 0 !important;
 			}
 		`;
 		document.head.append(style); // Добавим стили в разметку в конец тега head
 	}
 
 	controlSlider() { // Повесим обработчик клик на кнопки
-		this.prev.addEventListener('click', this.prevSlider.bind(this)); 
+		this.prev.addEventListener('click', this.prevSlider.bind(this));
 		this.next.addEventListener('click', this.nextSlider.bind(this));
 	}
 
 	prevSlider() {
-		if (this.options.infinity || this.options.position > 0) { 
+		if (this.options.infinity || this.options.position > 0) {
 			--this.options.position; // отнимаем начальную позицию по нажатию на <
 			if (this.options.position < 0) {
-				this.options.position = this.options.maxPosition; // Если мы дошли до начала то вернемся к последнему слайду
+				this.options.position = this.options.maxPosition;
+				// Если мы дошли до начала то вернемся к последнему слайду
 			}
-			this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`; // Перемещаем слайды назад
+			this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+			// Перемещаем слайды назад
 		}
 	}
 
@@ -95,15 +96,19 @@ class Carousel {
 		if (this.options.infinity || this.options.position < this.options.maxPosition) {
 			++this.options.position;
 			if (this.options.position > this.options.maxPosition) {
-				this.options.position = 0; // Если мы дошли до конца то вернемся к первому слайду
+				this.options.position = 0;
+				// Если мы дошли до конца то вернемся к первому слайду
 			}
-			this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`; //Перемещаем слайды вперед
+			this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+			//Перемещаем слайды вперед
 		}
 	}
 
 	addArrow() { // Добавим кнопки если их нет в разметке
 		this.prev = document.createElement('button');
 		this.next = document.createElement('button');
+		this.prev.innerHTML = `<div class="arrow"></div>`;
+		this.next.innerHTML = `<div class="arrow"></div>`;
 		this.prev.className = 'slider__prev';
 		this.next.className = 'slider__next';
 		this.main.append(this.prev);
@@ -113,25 +118,43 @@ class Carousel {
 		style.textContent = `
 			.slider__prev,
 			.slider__next {
+				position: absolute;
 				margin: 0 10px;
-				border: 20px solid transparent;
-				background-color: transparent;
+				width: 40px;
+				height: 40px;
+				font-size: 20px;
+				border: none;
+				border-radius: 50px;
+				background-color: #f4d11a;
 				cursor: pointer;
+			}
+			.arrow {
+				width: 15px;
+				height: 15px;
+				border-top: 2px solid #000;
+				border-right: 2px solid #000;
 			}
 
 			.slider__next {
-				border-left-color: #19b5fe;
+				top: 50px;
+				right: -10px;
+				padding-left: 12px;
+				border-left-color: #24182e;
+				transform: rotate(45deg);
 			}
 
 			.slider__prev {
-				border-right-color: #19b5fe;
+				top: 50px;
+				left: 20px;
+				padding-left: 12px;
+				border-right-color: #521833;
+				transform: rotate(-135deg);
 			}
 
 			.slider__prev:hover,
 			.slider__next:hover,
 			.slider__prev:focus,
 			.slider__next:focus {
-				background-color: transparent;
 				outline: transparent;
 			}
 		`;
