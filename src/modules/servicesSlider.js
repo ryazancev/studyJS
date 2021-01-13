@@ -4,8 +4,7 @@ const servicesSlider = () => {
 	const carousel = new Carousel({
 		main: '.services__wrapper',
 		wrap: '.services-slider',
-		slidesToShow: 4,
-		infinity: true,
+		slidesToShow: 5,
 		responsive: [
 			{
 				breackpoint: 991,

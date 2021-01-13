@@ -57,17 +57,17 @@ class Carousel {
 			.slider {
 				overflow: hidden !important;
 				position: relative;
-				margin-bottom: 40px;
 			}
 
 			.slider__wrap {
-				
 				display: flex !important;
 				transition: transform 0.5s !important;
 				will-change: transform !important;
+				padding: 0 !important;
 			}
 
 			.slider__item {
+				margin: 0 !important;
 				flex: 0 0 ${this.options.widthSlide}% !important;
 			}
 		`;
@@ -144,14 +144,14 @@ class Carousel {
 
 			.slider__next {
 				top: 50px;
-				right: -10px;
+				right: 0px;
 				padding-left: 12px;
 				border-left-color: #24182e;
 			}
 
 			.slider__prev {
 				top: 50px;
-				left: 20px;
+				left: 0px;
 				padding-left: 12px;
 				border-right-color: #521833;	
 			}
