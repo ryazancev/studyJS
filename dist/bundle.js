@@ -60,7 +60,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nvar changeClub = function changeClub() {\n  var clubsList = document.querySelector('.clubs-list');\n  var headMain = document.querySelector('.head-main');\n  headMain.addEventListener('click', function (event) {\n    var target = event.target.closest('.clubs-list');\n\n    if (target) {\n      clubsList.children[1].style.display = 'block';\n    } else {\n      clubsList.children[1].style.display = '';\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (changeClub);\n\n//# sourceURL=webpack://JS/./src/modules/changeClub.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nvar changeClub = function changeClub() {\n  var clubsList = document.querySelector('.clubs-list');\n  clubsList.addEventListener('click', function () {\n    if (clubsList.children[1].style.display === 'none') {\n      clubsList.children[1].style.display = 'block';\n    } else {\n      clubsList.children[1].style.display = 'none';\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (changeClub);\n\n//# sourceURL=webpack://JS/./src/modules/changeClub.js?");
 
 /***/ }),
 
