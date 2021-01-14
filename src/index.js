@@ -6,6 +6,7 @@ import presentHandler from './modules/presentHandler';
 import mainHeader from './modules/mainHeader';
 import mainSlider from './modules/mainSlider';
 import toTop from './modules/toTop';
+import calc from './modules/calc';
 
 
 servicesSlider();
@@ -14,3 +15,4 @@ presentHandler();
 mainHeader();
 mainSlider();
 toTop();
+calc();

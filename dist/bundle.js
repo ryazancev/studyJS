@@ -38,7 +38,29 @@ eval("\nmodule.exports = function () {\n\treturn /[\\u001b\\u009b][[()#;?]*(?:[0
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/servicesSlider */ \"./src/modules/servicesSlider.js\");\n/* harmony import */ var _modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/gallerySlider */ \"./src/modules/gallerySlider.js\");\n/* harmony import */ var _modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/presentHandler */ \"./src/modules/presentHandler.js\");\n/* harmony import */ var _modules_mainHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mainHeader */ \"./src/modules/mainHeader.js\");\n/* harmony import */ var _modules_mainSlider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/mainSlider */ \"./src/modules/mainSlider.js\");\n/* harmony import */ var _modules_toTop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/toTop */ \"./src/modules/toTop.js\");\n\n\n\n\n\n\n\n\n(0,_modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__.default)();\n(0,_modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__.default)();\n(0,_modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__.default)();\n(0,_modules_mainHeader__WEBPACK_IMPORTED_MODULE_3__.default)();\n(0,_modules_mainSlider__WEBPACK_IMPORTED_MODULE_4__.default)();\n(0,_modules_toTop__WEBPACK_IMPORTED_MODULE_5__.default)();\n\n//# sourceURL=webpack://JS/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/servicesSlider */ \"./src/modules/servicesSlider.js\");\n/* harmony import */ var _modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/gallerySlider */ \"./src/modules/gallerySlider.js\");\n/* harmony import */ var _modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/presentHandler */ \"./src/modules/presentHandler.js\");\n/* harmony import */ var _modules_mainHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mainHeader */ \"./src/modules/mainHeader.js\");\n/* harmony import */ var _modules_mainSlider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/mainSlider */ \"./src/modules/mainSlider.js\");\n/* harmony import */ var _modules_toTop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/toTop */ \"./src/modules/toTop.js\");\n/* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ \"./src/modules/calc.js\");\n\n\n\n\n\n\n\n\n\n(0,_modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__.default)();\n(0,_modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__.default)();\n(0,_modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__.default)();\n(0,_modules_mainHeader__WEBPACK_IMPORTED_MODULE_3__.default)();\n(0,_modules_mainSlider__WEBPACK_IMPORTED_MODULE_4__.default)();\n(0,_modules_toTop__WEBPACK_IMPORTED_MODULE_5__.default)();\n(0,_modules_calc__WEBPACK_IMPORTED_MODULE_6__.default)();\n\n//# sourceURL=webpack://JS/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/animate.js":
+/*!********************************!*\
+  !*** ./src/modules/animate.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => /* binding */ animate\n/* harmony export */ });\n// Анимация база\nfunction animate(_ref) {\n  var timing = _ref.timing,\n      draw = _ref.draw,\n      duration = _ref.duration;\n  var start = performance.now();\n  requestAnimationFrame(function animate(time) {\n    // timeFraction изменяется от 0 до 1\n    var timeFraction = (time - start) / duration;\n    if (timeFraction > 1) timeFraction = 1; // вычисление текущего состояния анимации\n\n    var progress = timing(timeFraction);\n    draw(progress); // отрисовать её\n\n    if (timeFraction < 1) {\n      requestAnimationFrame(animate);\n    }\n  });\n}\n\n//# sourceURL=webpack://JS/./src/modules/animate.js?");
+
+/***/ }),
+
+/***/ "./src/modules/calc.js":
+/*!*****************************!*\
+  !*** ./src/modules/calc.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animate */ \"./src/modules/animate.js\");\n\n\nvar calc = function calc() {\n  (0,_animate__WEBPACK_IMPORTED_MODULE_0__.default)({\n    duration: 1000,\n    timing: function timing(timeFraction) {\n      return timeFraction;\n    },\n    draw: function draw(progress) {// elem.style.width = progress * 100 + '%';\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calc);\n\n//# sourceURL=webpack://JS/./src/modules/calc.js?");
 
 /***/ }),
 
