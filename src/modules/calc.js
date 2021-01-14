@@ -21,7 +21,6 @@ const calc = () => {
 			},
 			draw(progress) {
 				if (priceMessage.value !== '' && priceMessage.value === 'ТЕЛО2020') {
-					console.log(priceMessage.value);
 					if (cardLetoMozaika.checked) {
 						if (m1.checked) priceTotal.textContent = Math.ceil(progress * (1999 - 1999 / 100 * 30));
 						if (m2.checked) priceTotal.textContent = Math.ceil(progress * (9900 - 9900 / 100 * 30));
