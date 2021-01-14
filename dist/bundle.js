@@ -38,7 +38,7 @@ eval("\nmodule.exports = function () {\n\treturn /[\\u001b\\u009b][[()#;?]*(?:[0
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/servicesSlider */ \"./src/modules/servicesSlider.js\");\n/* harmony import */ var _modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/gallerySlider */ \"./src/modules/gallerySlider.js\");\n/* harmony import */ var _modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/presentHandler */ \"./src/modules/presentHandler.js\");\n/* harmony import */ var _modules_mainHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mainHeader */ \"./src/modules/mainHeader.js\");\n/* harmony import */ var _modules_mainSlider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/mainSlider */ \"./src/modules/mainSlider.js\");\n\n\n\n\n\n\n\n(0,_modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__.default)();\n(0,_modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__.default)();\n(0,_modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__.default)();\n(0,_modules_mainHeader__WEBPACK_IMPORTED_MODULE_3__.default)();\n(0,_modules_mainSlider__WEBPACK_IMPORTED_MODULE_4__.default)();\n\n//# sourceURL=webpack://JS/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/servicesSlider */ \"./src/modules/servicesSlider.js\");\n/* harmony import */ var _modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/gallerySlider */ \"./src/modules/gallerySlider.js\");\n/* harmony import */ var _modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/presentHandler */ \"./src/modules/presentHandler.js\");\n/* harmony import */ var _modules_mainHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mainHeader */ \"./src/modules/mainHeader.js\");\n/* harmony import */ var _modules_mainSlider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/mainSlider */ \"./src/modules/mainSlider.js\");\n/* harmony import */ var _modules_toTop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/toTop */ \"./src/modules/toTop.js\");\n\n\n\n\n\n\n\n\n(0,_modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__.default)();\n(0,_modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__.default)();\n(0,_modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__.default)();\n(0,_modules_mainHeader__WEBPACK_IMPORTED_MODULE_3__.default)();\n(0,_modules_mainSlider__WEBPACK_IMPORTED_MODULE_4__.default)();\n(0,_modules_toTop__WEBPACK_IMPORTED_MODULE_5__.default)();\n\n//# sourceURL=webpack://JS/./src/index.js?");
 
 /***/ }),
 
@@ -105,6 +105,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./carousel */ \"./src/modules/carousel.js\");\n\n\nvar servicesSlider = function servicesSlider() {\n  var carousel = new _carousel__WEBPACK_IMPORTED_MODULE_0__.default({\n    main: '.services__wrapper',\n    wrap: '.services-slider',\n    slidesToShow: 5,\n    responsive: [{\n      breackpoint: 991,\n      slidesToShow: 3\n    }, {\n      breackpoint: 767,\n      slidesToShow: 2\n    }, {\n      breackpoint: 580,\n      slidesToShow: 1\n    }]\n  });\n  carousel.init();\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (servicesSlider);\n\n//# sourceURL=webpack://JS/./src/modules/servicesSlider.js?");
+
+/***/ }),
+
+/***/ "./src/modules/toTop.js":
+/*!******************************!*\
+  !*** ./src/modules/toTop.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nvar toTop = function toTop() {\n  var arrowTop = document.getElementById('totop');\n  arrowTop.style.display = 'none';\n  window.addEventListener('scroll', function () {\n    if (document.documentElement.scrollTop < 594) {\n      arrowTop.style.display = 'none';\n    } else {\n      arrowTop.style.display = 'block';\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (toTop);\n\n//# sourceURL=webpack://JS/./src/modules/toTop.js?");
 
 /***/ }),
 
