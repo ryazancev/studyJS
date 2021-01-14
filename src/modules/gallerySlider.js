@@ -67,6 +67,25 @@ const gallerySlider = () => {
 		.pagination__item--active {
 			background-color: #f4d11a;
 		}
+
+		@media (max-width: 580px) {
+			.pagination__list {
+				left: 32%;
+			}
+			.gallery-slider .slider__prev {
+				left: 0px;
+			}
+	
+			.gallery-slider .slider__next {
+				right: 0px;
+			}
+		}
+
+		@media (max-width: 390px) {
+			.pagination__list {
+				left: 23%;
+			}
+		}
 	`);
 
 	sliderContainer.addEventListener('click', event => {
