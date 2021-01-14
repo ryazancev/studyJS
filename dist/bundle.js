@@ -38,7 +38,7 @@ eval("\nmodule.exports = function () {\n\treturn /[\\u001b\\u009b][[()#;?]*(?:[0
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/servicesSlider */ \"./src/modules/servicesSlider.js\");\n/* harmony import */ var _modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/gallerySlider */ \"./src/modules/gallerySlider.js\");\n/* harmony import */ var _modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/presentHandler */ \"./src/modules/presentHandler.js\");\n/* harmony import */ var _modules_changeClub__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/changeClub */ \"./src/modules/changeClub.js\");\n\n\n\n\n\n\n(0,_modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__.default)();\n(0,_modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__.default)();\n(0,_modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__.default)();\n(0,_modules_changeClub__WEBPACK_IMPORTED_MODULE_3__.default)();\n\n//# sourceURL=webpack://JS/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/servicesSlider */ \"./src/modules/servicesSlider.js\");\n/* harmony import */ var _modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/gallerySlider */ \"./src/modules/gallerySlider.js\");\n/* harmony import */ var _modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/presentHandler */ \"./src/modules/presentHandler.js\");\n/* harmony import */ var _modules_mainHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/mainHeader */ \"./src/modules/mainHeader.js\");\n\n\n\n\n\n\n(0,_modules_servicesSlider__WEBPACK_IMPORTED_MODULE_0__.default)();\n(0,_modules_gallerySlider__WEBPACK_IMPORTED_MODULE_1__.default)();\n(0,_modules_presentHandler__WEBPACK_IMPORTED_MODULE_2__.default)();\n(0,_modules_mainHeader__WEBPACK_IMPORTED_MODULE_3__.default)();\n\n//# sourceURL=webpack://JS/./src/index.js?");
 
 /***/ }),
 
@@ -53,17 +53,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/modules/changeClub.js":
-/*!***********************************!*\
-  !*** ./src/modules/changeClub.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nvar changeClub = function changeClub() {\n  var clubsList = document.querySelector('.clubs-list');\n  clubsList.addEventListener('click', function () {\n    if (clubsList.children[1].style.display === 'none') {\n      clubsList.children[1].style.display = 'block';\n    } else {\n      clubsList.children[1].style.display = 'none';\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (changeClub);\n\n//# sourceURL=webpack://JS/./src/modules/changeClub.js?");
-
-/***/ }),
-
 /***/ "./src/modules/gallerySlider.js":
 /*!**************************************!*\
   !*** ./src/modules/gallerySlider.js ***!
@@ -72,6 +61,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nvar gallerySlider = function gallerySlider() {\n  var sliderContainer = document.querySelector('.gallery-slider'),\n      slide = sliderContainer.querySelectorAll('.slide'),\n      style = document.querySelector('style'),\n      prevBtn = document.querySelector('.slider__prev').cloneNode(true),\n      nextBtn = document.querySelector('.slider__next').cloneNode(true),\n      pagination = document.createElement('ul');\n  var currentSlide = 0; //Текущий слайд\n  // Добавим всем слайдам кроме первого display: none;\n\n  for (var i = 0; i < slide.length; i++) {\n    if (i !== 0) {\n      slide[i].style.display = 'none';\n    }\n  } // Установим relative чтобы разместить кнопки и пагинацию\n\n\n  sliderContainer.style.position = 'relative'; // Закинем кнопки из карусели в тело слайдера\n\n  sliderContainer.append(prevBtn);\n  sliderContainer.append(nextBtn); // создаем пагинацию\n\n  pagination.className = 'pagination__list';\n  sliderContainer.append(pagination);\n  slide.forEach(function (item, i) {\n    var pagItem = document.createElement('li');\n    pagItem.className = 'pagination__item';\n    if (i === 0) pagItem.classList.add('pagination__item--active');\n    pagination.append(pagItem);\n  }); // Кнопкам поменяем положение в пространсвте, пагинации добавим стилей\n\n  style.insertAdjacentText('beforeend', \"\\n\\t\\t.gallery-slider .slider__prev,\\n\\t\\t.gallery-slider .slider__next {\\n\\t\\t\\ttop: 45%;\\n\\t\\t}\\n\\n\\t\\t.gallery-slider .slider__prev {\\n\\t\\t\\tleft: 40px;\\n\\t\\t}\\n\\n\\t\\t.gallery-slider .slider__next {\\n\\t\\t\\tright: 40px;\\n\\t\\t}\\n\\n\\t\\t.pagination__list {\\n\\t\\t\\twidth: 200px;\\n\\t\\t\\tdisplay: flex;\\n\\t\\t\\tjustify-content: space-between;\\n\\t\\t\\tposition: absolute;\\n\\t\\t\\tbottom: 20px;\\n\\t\\t\\tleft: 39%;\\n\\t\\t}\\n\\n\\t\\t.pagination__item {\\n\\t\\t\\twidth: 20px;\\n\\t\\t\\theight: 10px;\\n\\t\\t\\tborder: 2px solid white;\\n\\t\\t\\tcursor: pointer;\\n\\t\\t}\\n\\n\\t\\t.pagination__item--active {\\n\\t\\t\\tbackground-color: #f4d11a;\\n\\t\\t}\\n\\t\");\n  sliderContainer.addEventListener('click', function (event) {\n    var target = event.target;\n    var pagBlock = document.querySelectorAll('.pagination__item');\n    if (!target.matches('.arrow, .pagination__item')) return;\n    slide[currentSlide].style.display = 'none';\n    pagBlock[currentSlide].classList.remove('pagination__item--active');\n\n    if (target.closest('.slider__next')) {\n      currentSlide++;\n    } else if (target.closest('.slider__prev')) {\n      currentSlide--;\n    } else if (target.matches('.pagination__item')) {\n      pagBlock.forEach(function (elem, index) {\n        if (elem === target) currentSlide = index;\n      });\n    }\n\n    if (currentSlide >= slide.length) currentSlide = 0;\n    if (currentSlide < 0) currentSlide = slide.length - 1;\n    slide[currentSlide].style.display = 'block';\n    pagBlock[currentSlide].classList.add('pagination__item--active');\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (gallerySlider);\n\n//# sourceURL=webpack://JS/./src/modules/gallerySlider.js?");
+
+/***/ }),
+
+/***/ "./src/modules/mainHeader.js":
+/*!***********************************!*\
+  !*** ./src/modules/mainHeader.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nvar mainHeader = function mainHeader() {\n  var headerElem = document.querySelector('.header-main'),\n      clubs = document.querySelector('.clubs-list').children[1],\n      freeVisitForm = document.getElementById('free_visit_form'),\n      callbackForm = document.getElementById('callback_form'),\n      popUps = document.querySelectorAll('.popup');\n  headerElem.addEventListener('click', function (event) {\n    var target = event.target;\n\n    if (target.closest('.clubs-list')) {\n      clubs.style.display = 'block';\n    } else {\n      clubs.style.display = '';\n    }\n\n    if (target.matches('.open-popup')) {\n      freeVisitForm.style.display = 'block';\n    } else if (target.matches('.callback-btn')) {\n      callbackForm.style.display = 'block';\n    }\n  });\n  popUps.forEach(function (item) {\n    item.addEventListener('click', function (event) {\n      var target = event.target;\n\n      if (target.classList.contains('close_icon') || target.classList.contains('close-btn')) {\n        item.style.display = '';\n      } else {\n        target = target.closest('.form-content');\n        if (!target) item.style.display = '';\n      }\n    });\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mainHeader);\n\n//# sourceURL=webpack://JS/./src/modules/mainHeader.js?");
 
 /***/ }),
 

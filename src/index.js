@@ -3,10 +3,10 @@
 import servicesSlider from './modules/servicesSlider';
 import gallerySlider from './modules/gallerySlider';
 import presentHandler from './modules/presentHandler';
-import changeClub from './modules/changeClub';
+import mainHeader from './modules/mainHeader';
 
 
 servicesSlider();
 gallerySlider();
 presentHandler();
-changeClub();
+mainHeader();
