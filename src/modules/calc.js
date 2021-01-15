@@ -1,19 +1,21 @@
 import animate from './animate';
 
 const calc = () => {
-	try {
-		const priceTotal = document.getElementById('price-total'),
-			cardLetoMozaika = document.getElementById('card_leto_mozaika'),
-			cardLetoSchelkovo = document.getElementById('card_leto_schelkovo'),
-			cardOrder = document.getElementById('card_order'),
-			priceMessage = document.querySelector('.price-message').children[0],
-			m1 = document.getElementById('m1'),
-			m2 = document.getElementById('m2'),
-			m3 = document.getElementById('m3'),
-			m4 = document.getElementById('m4');
+	const priceTotal = document.getElementById('price-total'),
+		cardLetoMozaika = document.getElementById('card_leto_mozaika'),
+		cardLetoSchelkovo = document.getElementById('card_leto_schelkovo'),
+		cardOrder = document.getElementById('card_order'),
+		priceMessage = document.querySelector('.price-promo'),
+		m1 = document.getElementById('m1'),
+		m2 = document.getElementById('m2'),
+		m3 = document.getElementById('m3'),
+		m4 = document.getElementById('m4');
 
+	if (priceTotal) {
 		priceTotal.textContent = 1999;
+	}
 
+	if (cardOrder) {
 		cardOrder.addEventListener('change', () => {
 			animate({
 				duration: 1000,
@@ -49,8 +51,6 @@ const calc = () => {
 				}
 			});
 		});
-	} catch (error) {
-		console.warn(error);
 	}
 };
 
