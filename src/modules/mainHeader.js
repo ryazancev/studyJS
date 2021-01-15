@@ -3,7 +3,9 @@ const mainHeader = () => {
 		clubs = document.querySelector('.clubs-list').children[1],
 		freeVisitForm = document.getElementById('free_visit_form'),
 		callbackForm = document.getElementById('callback_form'),
-		popUps = document.querySelectorAll('.popup');
+		popUps = document.querySelectorAll('.popup'),
+		popupMenu = document.querySelector('.popup-menu');
+
 
 	headerElem.addEventListener('click', event => {
 		const target = event.target;
@@ -21,6 +23,11 @@ const mainHeader = () => {
 		} else if (target.matches('.callback-btn')) {
 			callbackForm.style.display = 'block';
 		}
+
+		// Открываем бургер меню
+		if (target.closest('.menu-button')) {
+			popupMenu.style.display = 'flex';
+		}
 	});
 
 	popUps.forEach(item => {
@@ -36,6 +43,7 @@ const mainHeader = () => {
 			}
 		});
 	});
+
 };
 
 export default mainHeader;

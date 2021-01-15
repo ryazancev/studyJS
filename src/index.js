@@ -7,7 +7,7 @@ import mainHeader from './modules/mainHeader';
 import mainSlider from './modules/mainSlider';
 import toTop from './modules/toTop';
 import calc from './modules/calc';
-import toggleMenu from './modules/toggleMenu';
+import closeMenu from './modules/closeMenu';
 
 
 servicesSlider();
@@ -17,4 +17,4 @@ mainHeader();
 mainSlider();
 toTop();
 calc();
-toggleMenu();
+closeMenu();
