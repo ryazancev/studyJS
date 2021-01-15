@@ -9,9 +9,11 @@ const mainHeader = () => {
 		const target = event.target;
 
 		if (target.closest('.clubs-list')) {
-			clubs.style.display = 'block';
-		} else {
-			clubs.style.display = '';
+			if (!clubs.style.display) {
+				clubs.style.display = 'block';
+			} else {
+				clubs.style.display = '';
+			}
 		}
 
 		if (target.matches('.open-popup')) {
