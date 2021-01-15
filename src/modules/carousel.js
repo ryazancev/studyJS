@@ -38,12 +38,17 @@ class Carousel {
 	}
 
 	addClass() {
-		this.main.classList.add('slider'); //Добавим класс для обертки слайдера
-		this.wrap.classList.add('slider__wrap'); //Добавим класс для обертки слайдов
+		try {
+			this.main.classList.add('slider'); //Добавим класс для обертки слайдера
+			this.wrap.classList.add('slider__wrap'); //Добавим класс для обертки слайдов
 
-		for (const item of this.slides) {
-			item.classList.add('slider__item'); // Добавим классы самим слайдам
+			for (const item of this.slides) {
+				item.classList.add('slider__item'); // Добавим классы самим слайдам
+			}
+		} catch (error) {
+			console.warn(error);
 		}
+
 	}
 
 	addStyle() {
@@ -104,17 +109,18 @@ class Carousel {
 	}
 
 	addArrow() { // Добавим кнопки если их нет в разметке
-		this.prev = document.createElement('button');
-		this.next = document.createElement('button');
-		this.prev.innerHTML = `<div class="arrow arrow--left "></div>`;
-		this.next.innerHTML = `<div class="arrow arrow--right"></div>`;
-		this.prev.className = 'slider__prev';
-		this.next.className = 'slider__next';
-		this.main.append(this.prev);
-		this.main.append(this.next);
+		try {
+			this.prev = document.createElement('button');
+			this.next = document.createElement('button');
+			this.prev.innerHTML = `<div class="arrow arrow--left "></div>`;
+			this.next.innerHTML = `<div class="arrow arrow--right"></div>`;
+			this.prev.className = 'slider__prev';
+			this.next.className = 'slider__next';
+			this.main.append(this.prev);
+			this.main.append(this.next);
 
-		const style = document.createElement('style');
-		style.textContent = `
+			const style = document.createElement('style');
+			style.textContent = `
 			.slider__prev,
 			.slider__next {
 				position: absolute;
@@ -163,7 +169,10 @@ class Carousel {
 				outline: transparent;
 			}
 		`;
-		document.head.append(style);
+			document.head.append(style);
+		} catch (error) {
+			console.warn(error);
+		}
 	}
 
 	responseInit() {
