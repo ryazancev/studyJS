@@ -13,7 +13,6 @@ const calc = () => {
 			m4 = document.getElementById('m4');
 
 		priceTotal.textContent = 1999;
-		console.log(priceMessage);
 
 		cardOrder.addEventListener('change', () => {
 			animate({
