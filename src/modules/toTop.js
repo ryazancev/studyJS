@@ -1,8 +1,9 @@
+import getFixed from "./getFixed";
+
 const toTop = () => {
-	const 
+	const
 		arrowTop = document.getElementById('totop'),
-		topMenu = document.querySelector('.top-menu'),
-		domRect = topMenu.getBoundingClientRect();
+		topMenu = document.querySelector('.top-menu');
 
 	arrowTop.style.display = 'none';
 	window.addEventListener('scroll', () => {
@@ -15,11 +16,9 @@ const toTop = () => {
 
 		// Привяжем бургер меню при скроле
 		if (document.documentElement.clientWidth < 768) {
-			if (document.documentElement.scrollTop >= domRect.top) {
-				topMenu.style.position = 'fixed';
-			} else {
-				topMenu.style.position = '';
-			}
+			getFixed(topMenu);
+		} else {
+			return;
 		}
 	});
 

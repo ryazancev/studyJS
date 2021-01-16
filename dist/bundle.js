@@ -97,6 +97,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/modules/getFixed.js":
+/*!*********************************!*\
+  !*** ./src/modules/getFixed.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nvar getFixed = function getFixed(elem) {\n  if (document.documentElement.scrollTop > elem.offsetTop) {\n    elem.style.position = 'fixed';\n  } else if (document.documentElement.scrollTop < 187) {\n    elem.style.position = '';\n  }\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getFixed);\n\n//# sourceURL=webpack://JS/./src/modules/getFixed.js?");
+
+/***/ }),
+
 /***/ "./src/modules/mainHeader.js":
 /*!***********************************!*\
   !*** ./src/modules/mainHeader.js ***!
@@ -148,7 +159,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\nvar toTop = function toTop() {\n  var arrowTop = document.getElementById('totop'),\n      topMenu = document.querySelector('.top-menu'),\n      domRect = topMenu.getBoundingClientRect();\n  arrowTop.style.display = 'none';\n  window.addEventListener('scroll', function () {\n    if (document.documentElement.scrollTop < 594) {\n      arrowTop.style.display = 'none';\n    } else {\n      arrowTop.style.display = 'block';\n    } // Привяжем бургер меню при скроле\n\n\n    if (document.documentElement.clientWidth < 768) {\n      if (document.documentElement.scrollTop >= domRect.top) {\n        topMenu.style.position = 'fixed';\n      } else {\n        topMenu.style.position = '';\n      }\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (toTop);\n\n//# sourceURL=webpack://JS/./src/modules/toTop.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var _getFixed__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getFixed */ \"./src/modules/getFixed.js\");\n\n\nvar toTop = function toTop() {\n  var arrowTop = document.getElementById('totop'),\n      topMenu = document.querySelector('.top-menu');\n  arrowTop.style.display = 'none';\n  window.addEventListener('scroll', function () {\n    if (document.documentElement.scrollTop < 594) {\n      arrowTop.style.display = 'none';\n    } else {\n      arrowTop.style.display = 'block';\n    } // Привяжем бургер меню при скроле\n\n\n    if (document.documentElement.clientWidth < 768) {\n      (0,_getFixed__WEBPACK_IMPORTED_MODULE_0__.default)(topMenu);\n    } else {\n      return;\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (toTop);\n\n//# sourceURL=webpack://JS/./src/modules/toTop.js?");
 
 /***/ }),
 
