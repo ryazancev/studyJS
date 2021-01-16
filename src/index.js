@@ -8,6 +8,7 @@ import mainSlider from './modules/mainSlider';
 import toTop from './modules/toTop';
 import calc from './modules/calc';
 import closeMenu from './modules/closeMenu';
+import sendForm from './modules/sendForm';
 
 
 servicesSlider();
@@ -18,3 +19,4 @@ mainSlider();
 toTop();
 calc();
 closeMenu();
+sendForm();
