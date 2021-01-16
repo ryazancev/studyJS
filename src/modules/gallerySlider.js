@@ -94,7 +94,7 @@ const gallerySlider = () => {
 			const target = event.target;
 			const pagBlock = document.querySelectorAll('.pagination__item');
 
-			if (!target.matches('.arrow, .pagination__item')) return;
+			if (!target.matches('.arrow, .slider__next, .slider__prev, .pagination__item')) return;
 
 			slide[currentSlide].style.display = 'none';
 			pagBlock[currentSlide].classList.remove('pagination__item--active');
