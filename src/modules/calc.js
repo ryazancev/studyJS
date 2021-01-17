@@ -5,6 +5,7 @@ const calc = () => {
 		cardLetoMozaika = document.getElementById('card_leto_mozaika'),
 		cardLetoSchelkovo = document.getElementById('card_leto_schelkovo'),
 		cardOrder = document.getElementById('card_order'),
+		calcWrapper = document.querySelector('.time'),
 		priceMessage = document.querySelector('.price-promo'),
 		m1 = document.getElementById('m1'),
 		m2 = document.getElementById('m2'),
@@ -16,7 +17,7 @@ const calc = () => {
 	}
 
 	if (cardOrder) {
-		cardOrder.addEventListener('change', () => {
+		calcWrapper.addEventListener('change', () => {
 			animate({
 				duration: 1000,
 				timing(timeFraction) {

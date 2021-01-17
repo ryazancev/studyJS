@@ -41,6 +41,9 @@ const sendForm = () => {
 				for (const elem of form.elements) {
 					if (elem.type === 'checkbox' && !elem.checked) {
 						statusMessage.textContent = 'Вы должны дать согласие на обработку персональных данных';
+						setTimeout(() => {
+							statusMessage.textContent = '';
+						}, 3000);
 						return;
 					} else {
 						if (elem.type === 'text') {
