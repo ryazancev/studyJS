@@ -56,21 +56,19 @@ const sendForm = () => {
 					}
 				}
 			} else {
-				for (const elem of form.elements) {
-					if (!radioLetoMozaika.checked && !radioLetoSchelkovo.checked) {
-
-						console.dir(radioLetoMozaika);
-						console.dir(radioLetoSchelkovo);
-						statusMessage.textContent = 'Вы должны выбрать клуб';
-						setTimeout(() => {
-							statusMessage.textContent = '';
-						}, 3000);
-						return;
-					}
+				if (!radioLetoMozaika.checked && !radioLetoSchelkovo.checked) {
+					console.dir(radioLetoMozaika);
+					console.dir(radioLetoSchelkovo);
+					statusMessage.textContent = 'Вы должны выбрать клуб';
+					setTimeout(() => {
+						statusMessage.textContent = '';
+					}, 3000);
+					return;
 				}
+
 			}
 
-			
+
 			// Откроем модальное окно
 			popup.style.display = 'block';
 			// Добавим в модальное окно наше сообщение для пользователя
