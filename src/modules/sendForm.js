@@ -27,8 +27,8 @@ const sendForm = () => {
 		form.addEventListener('input', () => {
 			// Выберем только те инпуты, которые нас интересуют
 			for (const elem of form.elements) {
-				if (elem.type === 'text'
-				&& elem.className !== 'price-promo') elem.value = elem.value.replace(/[^А-яа-я ]/, '');
+				if (elem.type === 'text' &&
+				elem.className !== 'price-promo') elem.value = elem.value.replace(/[^А-яа-я ]/, '');
 				if (elem.type === 'tel') maskPhone('[type="tel"]');
 			}
 		});
