@@ -4,7 +4,6 @@ const calc = () => {
 	const priceTotal = document.getElementById('price-total'),
 		cardLetoMozaika = document.getElementById('card_leto_mozaika'),
 		cardLetoSchelkovo = document.getElementById('card_leto_schelkovo'),
-		cardOrder = document.getElementById('card_order'),
 		calcWrapper = document.querySelector('.time'),
 		priceMessage = document.querySelector('.price-promo'),
 		m1 = document.getElementById('m1'),
@@ -16,7 +15,7 @@ const calc = () => {
 		priceTotal.textContent = 1999;
 	}
 
-	if (cardOrder) {
+	if (calcWrapper) {
 		calcWrapper.addEventListener('change', () => {
 			animate({
 				duration: 1000,
