@@ -34,7 +34,7 @@ const sendForm = () => {
 			// Выберем только те инпуты, которые нас интересуют
 			for (const elem of form.elements) {
 				if (elem.type === 'text' &&
-				elem.className !== 'price-promo') {
+					elem.className !== 'price-promo') {
 					elem.autocomplete = 'off';
 					elem.value = elem.value.replace(/[^А-яа-я ]/, '');
 				}
@@ -52,46 +52,43 @@ const sendForm = () => {
 			statusMessage.style.marginTop = '5px';
 			form.append(statusMessage);
 
-			if (form.id !== 'footer_form') {
-				for (const elem of form.elements) {
+			for (const elem of form.elements) {
+				if (form.id !== 'footer_form') {
 					if (elem.type === 'checkbox' && !elem.checked) {
 						statusMessage.textContent = 'Вы должны дать согласие на обработку персональных данных';
 						setTimeout(() => {
 							statusMessage.textContent = '';
 						}, 3000);
 						return;
-					} else {
-						if (elem.type === 'text') {
-							if (elem.value.length < 2 || elem.value.length > 50) {
-								elem.value = '';
-								statusMessage.textContent = 'Имя должно включать не менее 2 и не более 50 символов';
-								setTimeout(() => {
-									statusMessage.textContent = '';
-								}, 3000);
-								return;
-							}
-						}
-						if (elem.type === 'tel') {
-							if (elem.value.length < 11) {
-								elem.value = '';
-								statusMessage.textContent = 'Телефон должен состоять из 11 цифр';
-								setTimeout(() => {
-									statusMessage.textContent = '';
-								}, 3000);
-								return;
-							}
+					}
+					if (elem.type === 'text' && elem.className !== 'price-promo') {
+						if (elem.value.length < 2 || elem.value.length > 50) {
+							statusMessage.textContent = 'Имя должно включать не менее 2 и не более 50 символов';
+							setTimeout(() => {
+								statusMessage.textContent = '';
+							}, 3000);
+							return;
 						}
 					}
+
+				} else {
+					if (!radioLetoMozaika.checked && !radioLetoSchelkovo.checked) {
+						statusMessage.textContent = 'Вы должны выбрать клуб';
+						setTimeout(() => {
+							statusMessage.textContent = '';
+						}, 3000);
+						return;
+					}
 				}
-			} else {
-				if (!radioLetoMozaika.checked && !radioLetoSchelkovo.checked) {
-					console.dir(radioLetoMozaika);
-					console.dir(radioLetoSchelkovo);
-					statusMessage.textContent = 'Вы должны выбрать клуб';
-					setTimeout(() => {
-						statusMessage.textContent = '';
-					}, 3000);
-					return;
+
+				if (elem.type === 'tel') {
+					if (elem.value.length < 11) {
+						statusMessage.textContent = 'Телефон должен состоять из 11 цифр';
+						setTimeout(() => {
+							statusMessage.textContent = '';
+						}, 3000);
+						return;
+					}
 				}
 			}
 
@@ -114,11 +111,17 @@ const sendForm = () => {
 					if (response.status !== 200) throw new Error('status network not 200');
 					titleMessage.textContent = 'Cпасибо';
 					textMessage.textContent = successMessage;
+					inputs.forEach(elem => {
+						elem.value = '';
+					});
 				})
 				.catch(error => {
 					titleMessage.textContent = 'Упс...';
 					textMessage.textContent = errorMessage;
 					console.error(error);
+					inputs.forEach(elem => {
+						elem.value = '';
+					});
 				});
 		});
 	});
