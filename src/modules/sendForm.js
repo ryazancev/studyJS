@@ -71,6 +71,16 @@ const sendForm = () => {
 								return;
 							}
 						}
+						if (elem.type === 'tel') {
+							if (elem.value.length < 11) {
+								elem.value = '';
+								statusMessage.textContent = 'Телефон должен состоять из 11 цифр';
+								setTimeout(() => {
+									statusMessage.textContent = '';
+								}, 3000);
+								return;
+							}
+						}
 					}
 				}
 			} else {
