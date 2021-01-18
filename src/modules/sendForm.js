@@ -82,7 +82,7 @@ const sendForm = () => {
 				}
 
 				if (elem.type === 'tel') {
-					if (elem.value.length < 11) {
+					if (elem.value.length < 18) {
 						statusMessage.textContent = 'Телефон должен состоять из 11 цифр';
 						setTimeout(() => {
 							statusMessage.textContent = '';
