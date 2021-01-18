@@ -4,6 +4,8 @@ import maskPhone from './maskPhone';
 const sendForm = () => {
 	// Получим все формы со страницы
 	const forms = document.querySelectorAll('form'),
+		priceTotal = document.getElementById('price-total'),
+		cardsTypes = document.querySelector('.cards-types'),
 		errorMessage = 'Что-то пошло не так...',
 		successMessage = 'Заявка отправлена',
 		statusMessage = document.createElement('div'),
@@ -101,9 +103,24 @@ const sendForm = () => {
 
 			const formData = new FormData(form);
 			const body = {};
+
 			formData.forEach((value, key) => {
 				body[key] = value;
 			});
+			if (priceTotal) {
+				body['price-total'] = priceTotal.textContent;
+			}
+			if (cardsTypes) {
+				const inputs = cardsTypes.querySelectorAll('input');
+
+				inputs.forEach(input => {
+					if (input.checked) {
+						const cost = input.nextElementSibling.querySelector('.cost');
+
+						body['price-total'] = cost.textContent.substr(0, (cost.textContent.length - 1));
+					}
+				});
+			}
 
 			// Отправляем данные
 			postData(body)
