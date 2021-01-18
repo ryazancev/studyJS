@@ -10,7 +10,7 @@ const mainHeader = () => {
 	headerElem.addEventListener('click', event => {
 		const target = event.target;
 
-		if (target.closest('.clubs-list')) {
+		if (target.matches('.clubs-list p')) {
 			if (!clubs.style.display) {
 				clubs.style.display = 'block';
 			} else {
@@ -47,3 +47,13 @@ const mainHeader = () => {
 };
 
 export default mainHeader;
+
+
+// if (target.closest('.clubs-list')) {
+
+// 	if (!clubs.style.display) {
+// 		clubs.style.display = 'block';
+// 	} else {
+// 		clubs.style.display = '';
+// 	}
+// }
