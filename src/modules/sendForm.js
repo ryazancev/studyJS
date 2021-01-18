@@ -22,14 +22,26 @@ const sendForm = () => {
 	});
 
 	forms.forEach(form => {
+		const inputs = form.querySelectorAll('input');
+
 		form.noValidate = true;
+		inputs.forEach(element => {
+			element.autocomplete = 'off';
+		});
+
 		// Повесим на инпуты, маску и валидацию
 		form.addEventListener('input', () => {
 			// Выберем только те инпуты, которые нас интересуют
 			for (const elem of form.elements) {
 				if (elem.type === 'text' &&
-				elem.className !== 'price-promo') elem.value = elem.value.replace(/[^А-яа-я ]/, '');
-				if (elem.type === 'tel') maskPhone('[type="tel"]');
+				elem.className !== 'price-promo') {
+					elem.autocomplete = 'off';
+					elem.value = elem.value.replace(/[^А-яа-я ]/, '');
+				}
+				if (elem.type === 'tel') {
+					elem.autocomplete = 'off';
+					maskPhone('[type="tel"]');
+				}
 			}
 		});
 

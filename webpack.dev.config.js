@@ -1,4 +1,5 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
@@ -10,8 +11,12 @@ module.exports = {
 	devServer: {
 		open: true,
 		port: 8080,
+		hot: true,
 		writeToDisk: true
 	},
+	plugins: [
+		new CleanWebpackPlugin(),
+	],
 	module: {
 		rules: [
 			{
