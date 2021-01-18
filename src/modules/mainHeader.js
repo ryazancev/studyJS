@@ -16,6 +16,8 @@ const mainHeader = () => {
 			} else {
 				clubs.style.display = '';
 			}
+		} else {
+			clubs.style.display = '';
 		}
 
 		if (target.matches('.open-popup')) {
